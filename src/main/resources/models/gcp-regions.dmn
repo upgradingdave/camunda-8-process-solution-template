@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="gcp-zones" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.14.0-nightly.20230715" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.2.0">
+  <decision id="Decision_gcpRegionsZones" name="GCP Regions and Zones">
+    <decisionTable id="DecisionTable_1ruqwum" hitPolicy="FIRST">
+      <input id="Input_1" label="Country">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>country</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="GCP Zone" name="gcpZone" typeRef="string" />
+      <rule id="DecisionRule_0rpmfos">
+        <inputEntry id="UnaryTests_0mvxnd7">
+          <text>"Taiwan"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ecyesc">
+          <text>"asia-east1-a"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0fp2snu">
+        <inputEntry id="UnaryTests_152og76">
+          <text>"Taiwan"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0m5sz36">
+          <text>"asia-east1-b"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ik6f6c">
+        <inputEntry id="UnaryTests_0drf441">
+          <text>"Taiwan"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_17x95tr">
+          <text>"asia-east1-c"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0kdi7lc">
+        <inputEntry id="UnaryTests_0sqrtgl">
+          <text>"China"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0oc2ljv">
+          <text>"asia-east2-a"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1r6yutl">
+        <inputEntry id="UnaryTests_0nonbu8">
+          <text>"China"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0b6t5cs">
+          <text>"asia-east2-b"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1si1ne8">
+        <inputEntry id="UnaryTests_1117u98">
+          <text>"China"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1y1vy98">
+          <text>"asia-east2-c"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1b7n5wp">
+        <inputEntry id="UnaryTests_0i7d43g">
+          <text>"Japan" </text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0bkbadl">
+          <text>"asia-northeast1-a"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0biqlov">
+        <inputEntry id="UnaryTests_0igrre9">
+          <text>"Japan"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1d6t2hb">
+          <text>"asia-northeast1-b"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0wzbcsq">
+        <inputEntry id="UnaryTests_1b7ta1k">
+          <text>"Japan"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_04za7q5">
+          <text>"asia-northeast1-c"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1852mcs">
+        <inputEntry id="UnaryTests_1f60ja1">
+          <text>"Japan"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_19q38om">
+          <text>"asia-northeast2-a"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0njnh3e">
+        <inputEntry id="UnaryTests_1b1eze9">
+          <text>"Japan"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0si120c">
+          <text>"asia-northeast2-b"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1l79hvq">
+        <inputEntry id="UnaryTests_1bf1yyb">
+          <text>"Japan"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1l7jg49">
+          <text>"asia-northeast2-c"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0lpgm6g">
+        <inputEntry id="UnaryTests_0yoxtdc">
+          <text>"South Korea"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_01g5bvd">
+          <text>"asia-northeast3-a"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1rik6qb">
+        <inputEntry id="UnaryTests_1soks2z">
+          <text>"South Korea"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_03p9d0t">
+          <text>"asia-northeast3-b"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1lze9ki">
+        <inputEntry id="UnaryTests_01a65hs">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_04b707i">
+          <text>"Unknown"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="Decision_gcpRegionsZones">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

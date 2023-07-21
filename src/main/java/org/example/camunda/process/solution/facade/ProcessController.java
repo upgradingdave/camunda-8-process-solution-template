@@ -1,6 +1,7 @@
 package org.example.camunda.process.solution.facade;
 
 import io.camunda.zeebe.client.ZeebeClient;
+import io.camunda.zeebe.client.api.response.EvaluateDecisionResponse;
 import org.example.camunda.process.solution.ProcessConstants;
 import org.example.camunda.process.solution.ProcessVariables;
 import org.slf4j.Logger;
@@ -54,5 +55,29 @@ public class ProcessController {
         .correlationKey(correlationKey)
         .variables(variables)
         .send();
+  }
+
+  @PostMapping("/dmn/eval/{decisionId}")
+  public EvaluateDecisionResponse evaluateDecision(
+      @PathVariable String decisionId, @RequestBody ProcessVariables variables) {
+
+    LOG.info("Evaluating decision `{}` with variables: {}", decisionId, variables);
+    long startTime = System.nanoTime();
+
+    EvaluateDecisionResponse response =
+        zeebe
+            .newEvaluateDecisionCommand()
+            .decisionId(decisionId)
+            .variables(variables)
+            .send()
+            .join();
+
+    long endTime = System.nanoTime();
+    long duration = (endTime - startTime); // divide by 1000000 to get milliseconds.
+
+    LOG.info("Execution Time (millis): {}", duration / 1000000);
+    LOG.info("Response: {}", response.getDecisionOutput());
+
+    return response;
   }
 }

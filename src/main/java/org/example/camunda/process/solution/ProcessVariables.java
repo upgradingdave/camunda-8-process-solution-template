@@ -12,6 +12,8 @@ public class ProcessVariables {
   private String businessKey;
   private Boolean result;
 
+  private String country;
+
   public String getBusinessKey() {
     return businessKey;
   }
@@ -28,6 +30,14 @@ public class ProcessVariables {
   public ProcessVariables setResult(Boolean result) {
     this.result = result;
     return this;
+  }
+
+  public String getCountry() {
+    return country;
+  }
+
+  public void setCountry(String country) {
+    this.country = country;
   }
 
   @Override
