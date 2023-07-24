@@ -2,6 +2,35 @@
 ![Compatible with: Camunda Platform 8](https://img.shields.io/badge/Compatible%20with-Camunda%20Platform%208-0072Ce)
 [![](https://img.shields.io/badge/Lifecycle-Incubating-blue)](https://github.com/Camunda-Community-Hub/community/blob/main/extension-lifecycle.md#incubating-)
 
+# Evaluation DMN example
+
+This is example code that demonstrates a few concepts:
+
+1. How to evaluate a DMN Table directly (without having to run the associated BPMN process)
+2. How to run a BPM process end-to-end and get the result
+
+### Connecting to Self Managed
+
+If you use Camunda Helm charts to install a Self Managed environment, then you can use a configuration similar to the following to connect
+```
+# Set this to the url of the Zeebe Gateway. Most likely, the Gateway is exposed by an ingress over port 443
+zeebe.client.broker.gatewayAddress=my.zeebe.gateway.com:443
+# This should be set to fals for tls
+zeebe.client.security.plaintext=false
+
+# By default, the Zeebe Gateway will be secured via OAuth2 by Camunda Identity.
+# You'll need to configure an Identity M2M Application as described here: https://docs.camunda.io/docs/self-managed/concepts/access-control/applications/.
+zeebe.client.cloud.clientId=<YOUR_M2M_CLIENT_ID>
+zeebe.client.cloud.clientSecret=<YOUR_M2M_CLIENT_SECRET>
+```
+
+### 1. Evaluate DMN Table directly
+
+
+
+
+This code was started based on the  [camunda-8-process-solution-template project](https://github.com/camunda-community-hub/camunda-8-process-solution-template). The README file blow comes straight from the original project:
+
 # Process Solution Template for Camunda Platform 8 using Java and Spring Boot
 
 This repository contains a Java application template for Camunda Platform 8 using Spring Boot
@@ -182,7 +211,7 @@ Once you are ready to deploy or execute processes use these settings to deploy t
 * URL: `zeebe:26500`
 
 ### Emails
-The setup includes [MailHog](https://github.com/mailhog/MailHog) as a test SMTP server. It captures all emails sent by Web Modeler, but does not forward them to the actual recipients. 
+The setup includes [MailHog](https://github.com/mailhog/MailHog) as a test SMTP server. It captures all emails sent by Web Modeler, but does not forward them to the actual recipients.
 
 You can access emails in MailHog's Web UI at [http://localhost:8075](http://localhost:8075).
 
