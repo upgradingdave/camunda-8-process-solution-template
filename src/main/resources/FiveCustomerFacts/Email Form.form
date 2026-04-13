@@ -1,0 +1,28 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.8.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "12675f5"
+  },
+  "schemaVersion": 19,
+  "id": "Form_04nyop6",
+  "components": [
+    {
+      "label": "Email Address",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0q2edd4",
+        "columns": null
+      },
+      "id": "Field_1twyjie",
+      "key": "customerEmail",
+      "defaultValue": "david.paroulek@camunda.com",
+      "validate": {
+        "required": true,
+        "validationType": "email"
+      }
+    }
+  ],
+  "type": "default"
+}

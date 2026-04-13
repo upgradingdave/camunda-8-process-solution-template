@@ -1,0 +1,30 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.8.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "12675f5"
+  },
+  "schemaVersion": 19,
+  "id": "summary-0lxturw",
+  "components": [
+    {
+      "type": "table",
+      "layout": {
+        "row": "Row_0ywrl6f",
+        "columns": null
+      },
+      "label": "Table",
+      "dataSource": "=customerFacts",
+      "rowCount": 5,
+      "id": "Field_14odfbe",
+      "columns": [
+        {
+          "label": "Facts about Customer",
+          "key": "fact"
+        }
+      ]
+    }
+  ],
+  "type": "default"
+}

@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="12675f5" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
+  <bpmn:process id="Process_fiveCustomerFacts" name="Long Term Memory" isExecutable="true">
+    <bpmn:extensionElements>
+      <zeebe:versionTag value="1.0" />
+    </bpmn:extensionElements>
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:extensionElements>
+        <zeebe:formDefinition formId="Form_04nyop6" />
+      </bpmn:extensionElements>
+      <bpmn:outgoing>Flow_1no07az</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1no07az" sourceRef="StartEvent_1" targetRef="Gateway_0coazit" />
+    <bpmn:endEvent id="Event_1thij9h">
+      <bpmn:incoming>Flow_16engg4</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1us1pez" sourceRef="Activity_02w2lo9" targetRef="Activity_1f8rlnx" />
+    <bpmn:adHocSubProcess id="Activity_02w2lo9" name="Learn about Customer" zeebe:modelerTemplate="io.camunda.connectors.agenticai.aiagent.jobworker.v1" zeebe:modelerTemplateVersion="7" zeebe:modelerTemplateIcon="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTYiIGZpbGw9IiNBNTZFRkYiLz4KPG1hc2sgaWQ9InBhdGgtMi1vdXRzaWRlLTFfMTg1XzYiIG1hc2tVbml0cz0idXNlclNwYWNlT25Vc2UiIHg9IjQiIHk9IjQiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0iYmxhY2siPgo8cmVjdCBmaWxsPSJ3aGl0ZSIgeD0iNCIgeT0iNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ii8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMjAuMDEwNSAxMi4wOTg3QzE4LjQ5IDEwLjU4OTQgMTcuMTU5NCA4LjEwODE0IDE2LjE3OTkgNi4wMTEwM0MxNi4xNTIgNi4wMDQ1MSAxNi4xMTc2IDYgMTYuMDc5NCA2QzE2LjA0MTEgNiAxNi4wMDY2IDYuMDA0NTEgMTUuOTc4OCA2LjAxMTA0QzE0Ljk5OTQgOC4xMDgxNCAxMy42Njk3IDEwLjU4ODkgMTIuMTQ4MSAxMi4wOTgxQzEwLjYyNjkgMTMuNjA3MSA4LjEyNTY4IDE0LjkyNjQgNi4wMTE1NyAxNS44OTgxQzYuMDA0NzQgMTUuOTI2MSA2IDE1Ljk2MTEgNiAxNkM2IDE2LjAzODcgNi4wMDQ2OCAxNi4wNzM2IDYuMDExNDQgMTYuMTAxNEM4LjEyNTE5IDE3LjA3MjkgMTAuNjI2MiAxOC4zOTE5IDEyLjE0NzcgMTkuOTAxNkMxMy42Njk3IDIxLjQxMDcgMTQuOTk5NiAyMy44OTIgMTUuOTc5MSAyNS45ODlDMTYuMDA2OCAyNS45OTU2IDE2LjA0MTEgMjYgMTYuMDc5MyAyNkMxNi4xMTc1IDI2IDE2LjE1MTkgMjUuOTk1NCAxNi4xNzk2IDI1Ljk4OUMxNy4xNTkxIDIzLjg5MiAxOC40ODg4IDIxLjQxMSAyMC4wMDk5IDE5LjkwMjFNMjAuMDA5OSAxOS45MDIxQzIxLjUyNTMgMTguMzk4NyAyMy45NDY1IDE3LjA2NjkgMjUuOTkxNSAxNi4wODI0QzI1Ljk5NjUgMTYuMDU5MyAyNiAxNi4wMzEgMjYgMTUuOTk5N0MyNiAxNS45Njg0IDI1Ljk5NjUgMTUuOTQwMyAyNS45OTE1IDE1LjkxNzFDMjMuOTQ3NCAxNC45MzI3IDIxLjUyNTkgMTMuNjAxIDIwLjAxMDUgMTIuMDk4NyIvPgo8L21hc2s+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMjAuMDEwNSAxMi4wOTg3QzE4LjQ5IDEwLjU4OTQgMTcuMTU5NCA4LjEwODE0IDE2LjE3OTkgNi4wMTEwM0MxNi4xNTIgNi4wMDQ1MSAxNi4xMTc2IDYgMTYuMDc5NCA2QzE2LjA0MTEgNiAxNi4wMDY2IDYuMDA0NTEgMTUuOTc4OCA2LjAxMTA0QzE0Ljk5OTQgOC4xMDgxNCAxMy42Njk3IDEwLjU4ODkgMTIuMTQ4MSAxMi4wOTgxQzEwLjYyNjkgMTMuNjA3MSA4LjEyNTY4IDE0LjkyNjQgNi4wMTE1NyAxNS44OTgxQzYuMDA0NzQgMTUuOTI2MSA2IDE1Ljk2MTEgNiAxNkM2IDE2LjAzODcgNi4wMDQ2OCAxNi4wNzM2IDYuMDExNDQgMTYuMTAxNEM4LjEyNTE5IDE3LjA3MjkgMTAuNjI2MiAxOC4zOTE5IDEyLjE0NzcgMTkuOTAxNkMxMy42Njk3IDIxLjQxMDcgMTQuOTk5NiAyMy44OTIgMTUuOTc5MSAyNS45ODlDMTYuMDA2OCAyNS45OTU2IDE2LjA0MTEgMjYgMTYuMDc5MyAyNkMxNi4xMTc1IDI2IDE2LjE1MTkgMjUuOTk1NCAxNi4xNzk2IDI1Ljk4OUMxNy4xNTkxIDIzLjg5MiAxOC40ODg4IDIxLjQxMSAyMC4wMDk5IDE5LjkwMjFNMjAuMDA5OSAxOS45MDIxQzIxLjUyNTMgMTguMzk4NyAyMy45NDY1IDE3LjA2NjkgMjUuOTkxNSAxNi4wODI0QzI1Ljk5NjUgMTYuMDU5MyAyNiAxNi4wMzEgMjYgMTUuOTk5N0MyNiAxNS45Njg0IDI1Ljk5NjUgMTUuOTQwMyAyNS45OTE1IDE1LjkxNzFDMjMuOTQ3NCAxNC45MzI3IDIxLjUyNTkgMTMuNjAxIDIwLjAxMDUgMTIuMDk4NyIgZmlsbD0id2hpdGUiLz4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0yMC4wMTA1IDEyLjA5ODdDMTguNDkgMTAuNTg5NCAxNy4xNTk0IDguMTA4MTQgMTYuMTc5OSA2LjAxMTAzQzE2LjE1MiA2LjAwNDUxIDE2LjExNzYgNiAxNi4wNzk0IDZDMTYuMDQxMSA2IDE2LjAwNjYgNi4wMDQ1MSAxNS45Nzg4IDYuMDExMDRDMTQuOTk5NCA4LjEwODE0IDEzLjY2OTcgMTAuNTg4OSAxMi4xNDgxIDEyLjA5ODFDMTAuNjI2OSAxMy42MDcxIDguMTI1NjggMTQuOTI2NCA2LjAxMTU3IDE1Ljg5ODFDNi4wMDQ3NCAxNS45MjYxIDYgMTUuOTYxMSA2IDE2QzYgMTYuMDM4NyA2LjAwNDY4IDE2LjA3MzYgNi4wMTE0NCAxNi4xMDE0QzguMTI1MTkgMTcuMDcyOSAxMC42MjYyIDE4LjM5MTkgMTIuMTQ3NyAxOS45MDE2QzEzLjY2OTcgMjEuNDEwNyAxNC45OTk2IDIzLjg5MiAxNS45NzkxIDI1Ljk4OUMxNi4wMDY4IDI1Ljk5NTYgMTYuMDQxMSAyNiAxNi4wNzkzIDI2QzE2LjExNzUgMjYgMTYuMTUxOSAyNS45OTU0IDE2LjE3OTYgMjUuOTg5QzE3LjE1OTEgMjMuODkyIDE4LjQ4ODggMjEuNDExIDIwLjAwOTkgMTkuOTAyMU0yMC4wMDk5IDE5LjkwMjFDMjEuNTI1MyAxOC4zOTg3IDIzLjk0NjUgMTcuMDY2OSAyNS45OTE1IDE2LjA4MjRDMjUuOTk2NSAxNi4wNTkzIDI2IDE2LjAzMSAyNiAxNS45OTk3QzI2IDE1Ljk2ODQgMjUuOTk2NSAxNS45NDAzIDI1Ljk5MTUgMTUuOTE3MUMyMy45NDc0IDE0LjkzMjcgMjEuNTI1OSAxMy42MDEgMjAuMDEwNSAxMi4wOTg3IiBzdHJva2U9IiM0OTFEOEIiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgbWFzaz0idXJsKCNwYXRoLTItb3V0c2lkZS0xXzE4NV82KSIvPgo8L3N2Zz4K">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="io.camunda.agenticai:aiagent-job-worker:1" retries="3" />
+        <zeebe:ioMapping>
+          <zeebe:input source="bedrock" target="provider.type" />
+          <zeebe:input source="{{secrets.AWS_REGION}}" target="provider.bedrock.region" />
+          <zeebe:input source="credentials" target="provider.bedrock.authentication.type" />
+          <zeebe:input source="{{secrets.AWS_ACCESS_KEY}}" target="provider.bedrock.authentication.accessKey" />
+          <zeebe:input source="{{secrets.AWS_SECRET_KEY}}" target="provider.bedrock.authentication.secretKey" />
+          <zeebe:input source="us.anthropic.claude-sonnet-4-6" target="provider.bedrock.model.model" />
+          <zeebe:input source="=&#34;&#10;Your goal is to ensure you know exactly 5 unique facts about the current customer.&#10;&#10;## STEP 0 — EXTRACT FACTS FROM PRIOR CONTEXT (do this before anything else)&#10;&#10;The user prompt may contain output from previous agent interactions, including&#10;&#60;reasoning&#62; blocks, summaries, and conversation history. This content represents&#10;facts already collected in earlier sessions.&#10;&#10;Before doing anything else:&#10;1. Read the entire user prompt carefully.&#10;2. Extract every unique fact about the customer that appears anywhere in the user &#10;   prompt — including inside &#60;reasoning&#62; blocks, inside summary lists, and inside &#10;   any free-form text.&#10;3. Deduplicate the facts. If the same fact appears multiple times in different &#10;   formats, count it only once.&#10;4. Count your total unique facts.&#10;5. Output your mandatory &#60;reasoning&#62; block (see OUTPUT FORMAT below) reflecting &#10;   this starting state, then:&#10;&#10;- If &#60;fact_count&#62; is 5 or more → set &#60;next_action&#62; to STOP_GOAL_REACHED and do &#10;  not call any tool.&#10;- If &#60;fact_count&#62; is less than 5 → set &#60;next_action&#62; to CALL_TOOL and proceed &#10;  to the Core Loop to collect the remaining facts.&#10;&#10;## Core Loop (only enter this if fact_count is less than 5 after STEP 0)&#10;1. Call the &#39;Ask Customer&#39; tool to learn one new fact not already in your list.&#10;2. Add the fact to your running list.&#10;3. Count how many unique facts you have collected so far (including those from STEP 0).&#10;4. If your count is less than 5, go back to step 1 immediately — do NOT pause, &#10;   summarize, or wait.&#10;5. Only stop calling tools when your count equals 5.&#10;&#10;## Rules&#10;- Facts extracted from the user prompt in STEP 0 count toward your total of 5.&#10;- Do NOT ask the customer about facts you already know from prior context.&#10;- You MUST call &#39;Ask Customer&#39; repeatedly until you reach 5 total unique facts.&#10;- A fact is only counted once, even if it appears multiple times in the user prompt &#10;  or the customer repeats themselves.&#10;- Do NOT stop after 1 new fact. Only stop when your total (prior + new) equals 5.&#10;- You can and should call the same tool multiple times.&#10;- Do not guess or invoke tools that were not explicitly configured. If no tool &#10;  matches a request, exit.&#10;- If the customer indicates they want to end the conversation at any point, stop &#10;  collecting and return a summary of all facts known so far.&#10;&#10;## OUTPUT FORMAT — THIS IS MANDATORY&#10;&#10;Every single response you produce — without exception — MUST begin with the following&#10;XML block. Do not write any text before it. Do not skip it. Do not abbreviate it.&#10;If this block is missing from your response, your output is invalid.&#10;&#10;&#60;reasoning&#62;&#10;  &#60;facts_collected&#62;&#10;    1. [first fact, or \&#34;none yet\&#34;]&#10;    2. [second fact, or \&#34;none yet\&#34;]&#10;    3. [third fact, or \&#34;none yet\&#34;]&#10;    4. [fourth fact, or \&#34;none yet\&#34;]&#10;    5. [fifth fact, or \&#34;none yet\&#34;]&#10;  &#60;/facts_collected&#62;&#10;  &#60;facts_from_prior_context&#62;[number of facts extracted from the user prompt in STEP 0]&#60;/facts_from_prior_context&#62;&#10;  &#60;facts_from_current_session&#62;[number of new facts collected via Ask Customer this session]&#60;/facts_from_current_session&#62;&#10;  &#60;fact_count&#62;[total unique facts, 0–5]&#60;/fact_count&#62;&#10;  &#60;goal_reached&#62;[true or false]&#60;/goal_reached&#62;&#10;  &#60;next_action&#62;[CALL_TOOL or STOP_GOAL_REACHED or STOP_CUSTOMER_EXIT]&#60;/next_action&#62;&#10;&#60;/reasoning&#62;&#10;&#10;After the closing &#60;/reasoning&#62; tag, write your response to the customer.&#10;Only set &#60;next_action&#62; to STOP_GOAL_REACHED when &#60;fact_count&#62; is 5 or more.&#10;&#34;" target="data.systemPrompt.prompt" />
+          <zeebe:input source="=(&#10;  if previousCustomerFacts != null and &#10;    previousCustomerFacts.chunks != null then&#10;      string join(previousCustomerFacts.chunks.content, &#34; &#34;)&#10;  else&#10;    &#34;No facts are known yet about about this customer&#34;&#10;)" target="data.userPrompt.prompt" />
+          <zeebe:input source="=agent.context" target="agentContext" />
+          <zeebe:input source="in-process" target="data.memory.storage.type" />
+          <zeebe:input source="=20" target="data.memory.contextWindowSize" />
+          <zeebe:input source="=10" target="data.limits.maxModelCalls" />
+          <zeebe:input source="WAIT_FOR_TOOL_CALL_RESULTS" target="data.events.behavior" />
+          <zeebe:input source="text" target="data.response.format.type" />
+          <zeebe:input source="=false" target="data.response.format.parseJson" />
+          <zeebe:input source="=true" target="data.response.includeAssistantMessage" />
+          <zeebe:input source="=true" target="data.response.includeAgentContext" />
+          <zeebe:input target="agent" />
+          <zeebe:output source="=agent" target="agent" />
+        </zeebe:ioMapping>
+        <zeebe:taskHeaders>
+          <zeebe:header key="elementTemplateVersion" value="7" />
+          <zeebe:header key="elementTemplateId" value="io.camunda.connectors.agenticai.aiagent.jobworker.v1" />
+          <zeebe:header key="retryBackoff" value="PT0S" />
+        </zeebe:taskHeaders>
+        <zeebe:adHoc outputCollection="toolCallResults" outputElement="={&#10;  id: toolCall._meta.id,&#10;  name: toolCall._meta.name,&#10;  content: toolCallResult&#10;}" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_14xxtl9</bpmn:incoming>
+      <bpmn:outgoing>Flow_1us1pez</bpmn:outgoing>
+      <bpmn:userTask id="Activity_06a9rkf" name="Ask Customer">
+        <bpmn:documentation>Use this tool to discover a fact about a customer</bpmn:documentation>
+        <bpmn:extensionElements>
+          <zeebe:userTask />
+          <zeebe:formDefinition formId="ask-customer-0o0oucp" />
+          <zeebe:ioMapping>
+            <zeebe:output source="=customerFact" target="toolCallResult" />
+          </zeebe:ioMapping>
+        </bpmn:extensionElements>
+      </bpmn:userTask>
+    </bpmn:adHocSubProcess>
+    <bpmn:sequenceFlow id="Flow_05zyuch" sourceRef="Activity_1f8rlnx" targetRef="Activity_0jy19ut" />
+    <bpmn:serviceTask id="Activity_1f8rlnx" name="Save Customer Facts" zeebe:modelerTemplate="io.camunda.connectors.EmbeddingsVectorDB.v1" zeebe:modelerTemplateVersion="2" zeebe:modelerTemplateIcon="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjAxIiBzdHlsZT0ibWl4LWJsZW5kLW1vZGU6bXVsdGlwbHkiLz4KPHBhdGggZD0iTTI1NS45OTkgMTM2LjcwMkMxOTMuMzE4IDEzNi43MDIgMTI1Ljg1NSAxNTEuNDg1IDEyNS44NTUgMTgzLjkzM1YzOTYuNDc1QzEyNS44NTUgNDI4LjkyMyAxOTMuMzE4IDQ0My43MDcgMjU1Ljk5OSA0NDMuNzA3QzMxOC42NzkgNDQzLjcwNyAzODYuMTQyIDQyOC45MjMgMzg2LjE0MiAzOTYuNDc1VjE4My45MzNDMzg2LjE0MiAxNTEuNDg1IDMxOC42NzkgMTM2LjcwMiAyNTUuOTk5IDEzNi43MDJaTTI1NS45OTkgMTYwLjMxOEMzMjQuNTkxIDE2MC4zMTggMzYwLjA1MyAxNzcuMjUxIDM2Mi40NDIgMTgzLjkzM0MzNjAuMDUzIDE5MC42MTUgMzI0LjU5MSAyMDcuNTQ5IDI1NS45OTkgMjA3LjU0OUMxODYuODg5IDIwNy41NDkgMTUxLjQxOCAxOTAuMzYyIDE0OS41MTggMTg0LjE0MVYxODQuMDgzQzE1MS40MTggMTc3LjUwNSAxODYuODg5IDE2MC4zMTggMjU1Ljk5OSAxNjAuMzE4Wk0xNDkuNTE4IDIxMi41OTlDMTc0LjY5NCAyMjUuMjAzIDIxNi4yNzcgMjMxLjE2NSAyNTUuOTk5IDIzMS4xNjVDMjk1LjcyMSAyMzEuMTY1IDMzNy4zMDQgMjI1LjIwMyAzNjIuNDggMjEyLjU5OVYyNTQuNjMxQzM2MC41OCAyNjEuMjA5IDMyNS4xMDggMjc4LjM5NiAyNTUuOTk5IDI3OC4zOTZDMTg2Ljc4NSAyNzguMzk2IDE1MS4zMDMgMjYxLjE1NyAxNDkuNTE4IDI1NC43ODFWMjEyLjU5OVpNMTQ5LjUxOCAyODMuNDQ3QzE3NC42OTQgMjk2LjA1IDIxNi4yNzcgMzAyLjAxMiAyNTUuOTk5IDMwMi4wMTJDMjk1LjcyMSAzMDIuMDEyIDMzNy4zMDQgMjk2LjA1IDM2Mi40OCAyODMuNDQ3VjMyNS40NzhDMzYwLjU4IDMzMi4wNTYgMzI1LjEwOCAzNDkuMjQ0IDI1NS45OTkgMzQ5LjI0NEMxODYuNzg1IDM0OS4yNDQgMTUxLjMwMyAzMzIuMDA0IDE0OS41MTggMzI1LjYyOFYyODMuNDQ3Wk0yNTUuOTk5IDQyMC4wOTFDMTg2Ljc4NSA0MjAuMDkxIDE1MS4zMDMgNDAyLjg1MSAxNDkuNTE4IDM5Ni40NzVWMzU0LjI5NEMxNzQuNjk0IDM2Ni44OTggMjE2LjI3NyAzNzIuODU5IDI1NS45OTkgMzcyLjg1OUMyOTUuNzIxIDM3Mi44NTkgMzM3LjMwNCAzNjYuODk4IDM2Mi40OCAzNTQuMjk0VjM5Ni4zMjVDMzYwLjU4IDQwMi45MDMgMzI1LjEwOCA0MjAuMDkxIDI1NS45OTkgNDIwLjA5MVoiIGZpbGw9IiNGQzVEMEQiIHN0cm9rZT0iI0ZDNUQwRCIgc3Ryb2tlLXdpZHRoPSI2LjY3NDAyIi8+CjxwYXRoIGQ9Ik0zODcuODYgMzk5Ljg4M0wzNzQuNTMxIDQxMy4yMTFMNDQ2Ljg4NiA0ODUuNTY2SDM4NC4wNTJWNTA0LjYwN0g0NzkuMjU2VjQwOS40MDNINDYwLjIxNVY0NzIuMjM4TDM4Ny44NiAzOTkuODgzWiIgZmlsbD0iI0ZDNUQwRCIgc3Ryb2tlPSIjRkM1RDBEIiBzdHJva2Utd2lkdGg9IjguMzQyNTIiLz4KPHBhdGggZD0iTTEyNC4xMzggMzk5Ljg4M0wxMzcuNDY3IDQxMy4yMTFMNjUuMTExNiA0ODUuNTY2SDEyNy45NDZWNTA0LjYwN0gzMi43NDIyVjQwOS40MDNINTEuNzgzVjQ3Mi4yMzhMMTI0LjEzOCAzOTkuODgzWiIgZmlsbD0iI0ZDNUQwRCIgc3Ryb2tlPSIjRkM1RDBEIiBzdHJva2Utd2lkdGg9IjguMzQyNTIiLz4KPHBhdGggZD0iTTI0Ni41NzUgMTQ2LjA3MUgyNjUuNDI1VjQzLjc0NTNMMzA5Ljg1NiA4OC4xNzYxTDMyMy4zMTkgNzQuNzEyMkwyNTYgNy4zOTI4MkwxODguNjgxIDc0LjcxMjJMMjAyLjE0NCA4OC4xNzYxTDI0Ni41NzUgNDMuNzQ1M1YxNDYuMDcxWiIgZmlsbD0iI0ZDNUQwRCIgc3Ryb2tlPSIjRkM1RDBEIiBzdHJva2Utd2lkdGg9IjguMzQyNTIiLz4KPC9zdmc+Cg==">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="io.camunda:embeddings-vector-database:1" retries="3" />
+        <zeebe:ioMapping>
+          <zeebe:input source="embedDocumentOperation" target="vectorDatabaseConnectorOperation.operationType" />
+          <zeebe:input source="bedrockModelProvider" target="embeddingModelProvider.modelProvider" />
+          <zeebe:input source="{{secrets.AWS_ACCESS_KEY}}" target="embeddingModelProvider.bedrock.accessKey" />
+          <zeebe:input source="{{secrets.AWS_SECRET_KEY}}" target="embeddingModelProvider.bedrock.secretKey" />
+          <zeebe:input source="{{secrets.AWS_REGION}}" target="embeddingModelProvider.bedrock.region" />
+          <zeebe:input source="TitanEmbedTextV2" target="embeddingModelProvider.bedrock.modelName" />
+          <zeebe:input source="D1024" target="embeddingModelProvider.bedrock.dimensions" />
+          <zeebe:input source="=false" target="embeddingModelProvider.bedrock.normalize" />
+          <zeebe:input source="=3" target="embeddingModelProvider.bedrock.maxRetries" />
+          <zeebe:input source="elasticsearchStore" target="vectorStore.storeType" />
+          <zeebe:input source="http://camunda-elasticsearch:9200" target="vectorStore.elasticsearch.baseUrl" />
+          <zeebe:input source="=&#34;elastic&#34;" target="vectorStore.elasticsearch.userName" />
+          <zeebe:input source="=&#34;elastic&#34;" target="vectorStore.elasticsearch.password" />
+          <zeebe:input source="=&#34;conversation-&#34; + customerEmail" target="vectorStore.elasticsearch.indexName" />
+          <zeebe:input source="PlainText" target="vectorDatabaseConnectorOperation.documentSource" />
+          <zeebe:input source="=agent.responseText" target="vectorDatabaseConnectorOperation.documentSourceFromProcessVariable" />
+          <zeebe:input source="noopDocumentSplitter" target="vectorDatabaseConnectorOperation.documentSplitter.splitterType" />
+        </zeebe:ioMapping>
+        <zeebe:taskHeaders>
+          <zeebe:header key="elementTemplateVersion" value="2" />
+          <zeebe:header key="elementTemplateId" value="io.camunda.connectors.EmbeddingsVectorDB.v1" />
+          <zeebe:header key="retryBackoff" value="PT0S" />
+        </zeebe:taskHeaders>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1us1pez</bpmn:incoming>
+      <bpmn:outgoing>Flow_05zyuch</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_036rkpe" name="Query Customer Facts" zeebe:modelerTemplate="io.camunda.connectors.EmbeddingsVectorDB.v1" zeebe:modelerTemplateVersion="2" zeebe:modelerTemplateIcon="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjAxIiBzdHlsZT0ibWl4LWJsZW5kLW1vZGU6bXVsdGlwbHkiLz4KPHBhdGggZD0iTTI1NS45OTkgMTM2LjcwMkMxOTMuMzE4IDEzNi43MDIgMTI1Ljg1NSAxNTEuNDg1IDEyNS44NTUgMTgzLjkzM1YzOTYuNDc1QzEyNS44NTUgNDI4LjkyMyAxOTMuMzE4IDQ0My43MDcgMjU1Ljk5OSA0NDMuNzA3QzMxOC42NzkgNDQzLjcwNyAzODYuMTQyIDQyOC45MjMgMzg2LjE0MiAzOTYuNDc1VjE4My45MzNDMzg2LjE0MiAxNTEuNDg1IDMxOC42NzkgMTM2LjcwMiAyNTUuOTk5IDEzNi43MDJaTTI1NS45OTkgMTYwLjMxOEMzMjQuNTkxIDE2MC4zMTggMzYwLjA1MyAxNzcuMjUxIDM2Mi40NDIgMTgzLjkzM0MzNjAuMDUzIDE5MC42MTUgMzI0LjU5MSAyMDcuNTQ5IDI1NS45OTkgMjA3LjU0OUMxODYuODg5IDIwNy41NDkgMTUxLjQxOCAxOTAuMzYyIDE0OS41MTggMTg0LjE0MVYxODQuMDgzQzE1MS40MTggMTc3LjUwNSAxODYuODg5IDE2MC4zMTggMjU1Ljk5OSAxNjAuMzE4Wk0xNDkuNTE4IDIxMi41OTlDMTc0LjY5NCAyMjUuMjAzIDIxNi4yNzcgMjMxLjE2NSAyNTUuOTk5IDIzMS4xNjVDMjk1LjcyMSAyMzEuMTY1IDMzNy4zMDQgMjI1LjIwMyAzNjIuNDggMjEyLjU5OVYyNTQuNjMxQzM2MC41OCAyNjEuMjA5IDMyNS4xMDggMjc4LjM5NiAyNTUuOTk5IDI3OC4zOTZDMTg2Ljc4NSAyNzguMzk2IDE1MS4zMDMgMjYxLjE1NyAxNDkuNTE4IDI1NC43ODFWMjEyLjU5OVpNMTQ5LjUxOCAyODMuNDQ3QzE3NC42OTQgMjk2LjA1IDIxNi4yNzcgMzAyLjAxMiAyNTUuOTk5IDMwMi4wMTJDMjk1LjcyMSAzMDIuMDEyIDMzNy4zMDQgMjk2LjA1IDM2Mi40OCAyODMuNDQ3VjMyNS40NzhDMzYwLjU4IDMzMi4wNTYgMzI1LjEwOCAzNDkuMjQ0IDI1NS45OTkgMzQ5LjI0NEMxODYuNzg1IDM0OS4yNDQgMTUxLjMwMyAzMzIuMDA0IDE0OS41MTggMzI1LjYyOFYyODMuNDQ3Wk0yNTUuOTk5IDQyMC4wOTFDMTg2Ljc4NSA0MjAuMDkxIDE1MS4zMDMgNDAyLjg1MSAxNDkuNTE4IDM5Ni40NzVWMzU0LjI5NEMxNzQuNjk0IDM2Ni44OTggMjE2LjI3NyAzNzIuODU5IDI1NS45OTkgMzcyLjg1OUMyOTUuNzIxIDM3Mi44NTkgMzM3LjMwNCAzNjYuODk4IDM2Mi40OCAzNTQuMjk0VjM5Ni4zMjVDMzYwLjU4IDQwMi45MDMgMzI1LjEwOCA0MjAuMDkxIDI1NS45OTkgNDIwLjA5MVoiIGZpbGw9IiNGQzVEMEQiIHN0cm9rZT0iI0ZDNUQwRCIgc3Ryb2tlLXdpZHRoPSI2LjY3NDAyIi8+CjxwYXRoIGQ9Ik0zODcuODYgMzk5Ljg4M0wzNzQuNTMxIDQxMy4yMTFMNDQ2Ljg4NiA0ODUuNTY2SDM4NC4wNTJWNTA0LjYwN0g0NzkuMjU2VjQwOS40MDNINDYwLjIxNVY0NzIuMjM4TDM4Ny44NiAzOTkuODgzWiIgZmlsbD0iI0ZDNUQwRCIgc3Ryb2tlPSIjRkM1RDBEIiBzdHJva2Utd2lkdGg9IjguMzQyNTIiLz4KPHBhdGggZD0iTTEyNC4xMzggMzk5Ljg4M0wxMzcuNDY3IDQxMy4yMTFMNjUuMTExNiA0ODUuNTY2SDEyNy45NDZWNTA0LjYwN0gzMi43NDIyVjQwOS40MDNINTEuNzgzVjQ3Mi4yMzhMMTI0LjEzOCAzOTkuODgzWiIgZmlsbD0iI0ZDNUQwRCIgc3Ryb2tlPSIjRkM1RDBEIiBzdHJva2Utd2lkdGg9IjguMzQyNTIiLz4KPHBhdGggZD0iTTI0Ni41NzUgMTQ2LjA3MUgyNjUuNDI1VjQzLjc0NTNMMzA5Ljg1NiA4OC4xNzYxTDMyMy4zMTkgNzQuNzEyMkwyNTYgNy4zOTI4MkwxODguNjgxIDc0LjcxMjJMMjAyLjE0NCA4OC4xNzYxTDI0Ni41NzUgNDMuNzQ1M1YxNDYuMDcxWiIgZmlsbD0iI0ZDNUQwRCIgc3Ryb2tlPSIjRkM1RDBEIiBzdHJva2Utd2lkdGg9IjguMzQyNTIiLz4KPC9zdmc+Cg==">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="io.camunda:embeddings-vector-database:1" retries="3" />
+        <zeebe:ioMapping>
+          <zeebe:input source="retrieveDocumentOperation" target="vectorDatabaseConnectorOperation.operationType" />
+          <zeebe:input source="=&#34;What are 5 facts about this customer?&#34;" target="vectorDatabaseConnectorOperation.query" />
+          <zeebe:input source="=5" target="vectorDatabaseConnectorOperation.documentLimit" />
+          <zeebe:input source="bedrockModelProvider" target="embeddingModelProvider.modelProvider" />
+          <zeebe:input source="{{secrets.AWS_ACCESS_KEY}}" target="embeddingModelProvider.bedrock.accessKey" />
+          <zeebe:input source="{{secrets.AWS_SECRET_KEY}}" target="embeddingModelProvider.bedrock.secretKey" />
+          <zeebe:input source="{{secrets.AWS_REGION}}" target="embeddingModelProvider.bedrock.region" />
+          <zeebe:input source="TitanEmbedTextV2" target="embeddingModelProvider.bedrock.modelName" />
+          <zeebe:input source="D1024" target="embeddingModelProvider.bedrock.dimensions" />
+          <zeebe:input source="=false" target="embeddingModelProvider.bedrock.normalize" />
+          <zeebe:input source="=3" target="embeddingModelProvider.bedrock.maxRetries" />
+          <zeebe:input source="elasticsearchStore" target="vectorStore.storeType" />
+          <zeebe:input source="http://camunda-elasticsearch:9200" target="vectorStore.elasticsearch.baseUrl" />
+          <zeebe:input source="=&#34;elastic&#34;" target="vectorStore.elasticsearch.userName" />
+          <zeebe:input source="=&#34;elastic&#34;" target="vectorStore.elasticsearch.password" />
+          <zeebe:input source="=&#34;conversation-&#34; + customerEmail" target="vectorStore.elasticsearch.indexName" />
+        </zeebe:ioMapping>
+        <zeebe:taskHeaders>
+          <zeebe:header key="elementTemplateVersion" value="2" />
+          <zeebe:header key="elementTemplateId" value="io.camunda.connectors.EmbeddingsVectorDB.v1" />
+          <zeebe:header key="resultVariable" value="previousCustomerFacts" />
+          <zeebe:header key="errorExpression" value="=if contains(error.message, &#34;index_not_found&#34;) then bpmnError(&#34;index_not_found&#34;, &#34;The index does not exist&#34;) else null" />
+          <zeebe:header key="retryBackoff" value="PT0S" />
+        </zeebe:taskHeaders>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1itajb7</bpmn:incoming>
+      <bpmn:outgoing>Flow_0y9m7d0</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0y9m7d0" sourceRef="Activity_036rkpe" targetRef="Gateway_1h5iqz7" />
+    <bpmn:boundaryEvent id="Event_0n361l6" name="No customer facts found" attachedToRef="Activity_036rkpe">
+      <bpmn:outgoing>Flow_1sqloxj</bpmn:outgoing>
+      <bpmn:errorEventDefinition id="ErrorEventDefinition_05av2rm" errorRef="Error_0vb336i" />
+    </bpmn:boundaryEvent>
+    <bpmn:exclusiveGateway id="Gateway_1h5iqz7">
+      <bpmn:incoming>Flow_0y9m7d0</bpmn:incoming>
+      <bpmn:incoming>Flow_1sqloxj</bpmn:incoming>
+      <bpmn:outgoing>Flow_14xxtl9</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_14xxtl9" sourceRef="Gateway_1h5iqz7" targetRef="Activity_02w2lo9" />
+    <bpmn:sequenceFlow id="Flow_1sqloxj" sourceRef="Event_0n361l6" targetRef="Gateway_1h5iqz7" />
+    <bpmn:exclusiveGateway id="Gateway_0coazit" name="Customer Email?" default="Flow_0lt0znb">
+      <bpmn:incoming>Flow_1no07az</bpmn:incoming>
+      <bpmn:outgoing>Flow_1itajb7</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0lt0znb</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1itajb7" name="Yes" sourceRef="Gateway_0coazit" targetRef="Activity_036rkpe">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=customerEmail != null and customerEmail != ""</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:endEvent id="Event_0bjfuut" name="Email Address Required">
+      <bpmn:incoming>Flow_0lt0znb</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0lt0znb" name="No" sourceRef="Gateway_0coazit" targetRef="Event_0bjfuut" />
+    <bpmn:sequenceFlow id="Flow_16engg4" sourceRef="Activity_05bw27t" targetRef="Event_1thij9h" />
+    <bpmn:userTask id="Activity_05bw27t" name="Summary">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:formDefinition formId="summary-0lxturw" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0kedm5o</bpmn:incoming>
+      <bpmn:outgoing>Flow_16engg4</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_0kedm5o" sourceRef="Activity_0jy19ut" targetRef="Activity_05bw27t" />
+    <bpmn:scriptTask id="Activity_0jy19ut" name="Format Summary">
+      <bpmn:extensionElements>
+        <zeebe:script expression="=(for line in split(substring before(substring after(agent.responseText, &#34;&#60;facts_collected&#62;&#34;), &#34;&#60;/facts_collected&#62;&#34;), &#34;\n&#34;)&#10;return {&#34;fact&#34;: &#10;    if contains(line, &#34;. &#34;) then substring after(line, &#34;. &#34;)&#10;    else null }&#10;)[item.fact != null]" resultVariable="customerFacts" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_05zyuch</bpmn:incoming>
+      <bpmn:outgoing>Flow_0kedm5o</bpmn:outgoing>
+    </bpmn:scriptTask>
+  </bpmn:process>
+  <bpmn:error id="Error_0vb336i" name="index_not_found" errorCode="index_not_found" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_fiveCustomerFacts">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="87" y="100" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1thij9h_di" bpmnElement="Event_1thij9h">
+        <dc:Bounds x="1442" y="100" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_15mmqf6_di" bpmnElement="Activity_02w2lo9" isExpanded="true">
+        <dc:Bounds x="550" y="18" width="325" height="200" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ci7q8b_di" bpmnElement="Activity_06a9rkf">
+        <dc:Bounds x="665" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_156uy1g_di" bpmnElement="Activity_1f8rlnx">
+        <dc:Bounds x="935" y="78" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1hbz998" bpmnElement="Activity_036rkpe">
+        <dc:Bounds x="295" y="78" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1h5iqz7_di" bpmnElement="Gateway_1h5iqz7" isMarkerVisible="true">
+        <dc:Bounds x="440" y="93" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0coazit_di" bpmnElement="Gateway_0coazit" isMarkerVisible="true">
+        <dc:Bounds x="170" y="93" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="152" y="69" width="85" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0bjfuut_di" bpmnElement="Event_0bjfuut">
+        <dc:Bounds x="177" y="182" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="160" y="225" width="71" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1t8eqib_di" bpmnElement="Activity_05bw27t">
+        <dc:Bounds x="1280" y="78" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1xruy6m_di" bpmnElement="Activity_0jy19ut">
+        <dc:Bounds x="1110" y="78" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0o8v97v_di" bpmnElement="Event_0n361l6">
+        <dc:Bounds x="347" y="140" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="370" y="206" width="89" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1no07az_di" bpmnElement="Flow_1no07az">
+        <di:waypoint x="123" y="118" />
+        <di:waypoint x="170" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1us1pez_di" bpmnElement="Flow_1us1pez">
+        <di:waypoint x="875" y="118" />
+        <di:waypoint x="935" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05zyuch_di" bpmnElement="Flow_05zyuch">
+        <di:waypoint x="1035" y="118" />
+        <di:waypoint x="1110" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0y9m7d0_di" bpmnElement="Flow_0y9m7d0">
+        <di:waypoint x="395" y="118" />
+        <di:waypoint x="440" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_14xxtl9_di" bpmnElement="Flow_14xxtl9">
+        <di:waypoint x="490" y="118" />
+        <di:waypoint x="550" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1sqloxj_di" bpmnElement="Flow_1sqloxj">
+        <di:waypoint x="365" y="176" />
+        <di:waypoint x="365" y="196" />
+        <di:waypoint x="465" y="196" />
+        <di:waypoint x="465" y="143" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1itajb7_di" bpmnElement="Flow_1itajb7">
+        <di:waypoint x="220" y="118" />
+        <di:waypoint x="295" y="118" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="236" y="100" width="18" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0lt0znb_di" bpmnElement="Flow_0lt0znb">
+        <di:waypoint x="195" y="143" />
+        <di:waypoint x="195" y="182" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="203" y="160" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_16engg4_di" bpmnElement="Flow_16engg4">
+        <di:waypoint x="1380" y="118" />
+        <di:waypoint x="1442" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0kedm5o_di" bpmnElement="Flow_0kedm5o">
+        <di:waypoint x="1210" y="118" />
+        <di:waypoint x="1280" y="118" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

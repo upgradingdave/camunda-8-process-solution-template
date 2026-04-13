@@ -1,0 +1,38 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.8.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "12675f5"
+  },
+  "schemaVersion": 19,
+  "id": "ask-customer-0o0oucp",
+  "components": [
+    {
+      "label": "Email Address",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1pa39de",
+        "columns": null
+      },
+      "id": "Field_0j3u4n8",
+      "key": "customerEmail",
+      "defaultValue": "david.paroulek@camunda.com",
+      "readonly": true
+    },
+    {
+      "label": "Tell us about yourself",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_0h5mwfz",
+        "columns": null
+      },
+      "id": "Field_0822bdo",
+      "key": "customerFact",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default"
+}
