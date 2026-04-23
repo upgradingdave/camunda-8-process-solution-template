@@ -40,3 +40,4 @@ e2e_tests/node_modules
 
 src/main/resources/configs
 .DS_Store
+frontend/node_modules
