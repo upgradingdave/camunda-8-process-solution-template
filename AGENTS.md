@@ -36,6 +36,22 @@ REST API (ProcessController)
     → ProcessConstants (process ID)
     → CamundaClient (gRPC/REST to Zeebe)
 
+REST API — service account auth (CamundaApiController)
+    → autowired CamundaClient (service account credentials from application.properties)
+    → GET /api/camunda/userTasks  (assignee extracted from JWT)
+
+REST API — user token passthrough (CamundaUserApiController)
+    → short-lived CamundaClient built per request with caller's JWT
+    → GET /userApi/camunda/userTasks  (Camunda API called in user's own context)
+
+Spring Security (SecurityConfig)
+    → validates Bearer JWT against Keycloak JWKS
+    → protects /api/** routes
+
+React frontend (frontend/)
+    → Keycloak PKCE login → Bearer token → calls backend API
+    → displays tasks assigned to logged-in user
+
 Zeebe Job Workers (MyWorker)
     → MyService (business logic)
     → ProcessVariables (data model)
@@ -47,10 +63,41 @@ BPMN models (src/main/resources/models/)
 **Key classes:**
 - `ProcessApplication` — entry point; `@Deployment` auto-deploys all `classpath*:/models/*.*`
 - `ProcessController` — `POST /process/start` and `POST /process/message/{messageName}/{correlationKey}`
+- `CamundaApiController` — `GET /api/camunda/userTasks`; uses autowired service-account `CamundaClient`; extracts assignee from JWT `preferred_username` claim
+- `CamundaUserApiController` — `GET /userApi/camunda/userTasks`; builds a short-lived `CamundaClient` per request using the caller's JWT as a pass-through `CredentialsProvider`; Camunda API calls run in the user's own authorization context
+- `SecurityConfig` — Spring Security OAuth2 resource server; validates JWTs against Keycloak; CORS configured for `localhost:3000`
 - `MyWorker` — two patterns: `@JobWorker` returning variables (simple), `@JobWorker` with `JobClient` injection (manual completion/error/retry handling)
 - `MyService` — replace `myOperation()` with real business logic
 - `ProcessVariables` — Jackson DTO with `@JsonInclude(NON_NULL)`; add fields here for new process variables
 - `ProcessConstants` — holds `BPMN_PROCESS_ID`; update when renaming the process
+
+## Frontend
+
+React app in `frontend/` using Vite + `keycloak-js`. Proxies `/api` to the Spring Boot backend at `localhost:8080`.
+
+```bash
+cd frontend
+npm install        # first time only
+npm run dev        # starts at http://localhost:3000
+```
+
+Requires a **public** Keycloak client named `camunda-react-app` with:
+- Standard flow enabled, client authentication OFF
+- Valid redirect URIs: `http://localhost:3000/*`
+- Web origins: `http://localhost:3000`
+
+Update `frontend/src/keycloak.js` if the Keycloak URL or realm name differs from `application.properties`.
+
+## Keycloak / Auth
+
+All `/api/**` endpoints require a Bearer JWT. The backend validates tokens using:
+```
+spring.security.oauth2.resourceserver.jwt.issuer-uri=<keycloak-realm-url>
+```
+
+The service-account client (`camunda.client.auth.client-id`) used by the app to connect to Camunda needs these Keycloak roles assigned to its service account:
+- `orchestration-api read:*`
+- `orchestration-api write:*`
 
 ## Configuration
 
@@ -63,10 +110,10 @@ BPMN models (src/main/resources/models/)
 | `application.keycloak.properties` | Self-managed with Keycloak |
 | `application.8.7.aws.properties` / `application.8.7.gcp.properties` | Cloud-hosted self-managed |
 
-The active config points to a remote self-managed instance (`dave01.gke.c8sm.com`) with OIDC auth. For local development, swap in `application.local.properties`.
-
 ## Tech Stack
 
 - Java 21, Spring Boot 4.0.3
-- Camunda Spring SDK 8.9.0-alpha5 (`io.camunda:spring-boot-starter-camunda-sdk`)
+- Camunda Spring SDK 8.9.0 (`io.camunda:camunda-spring-boot-starter`)
+- Spring Security + OAuth2 Resource Server (JWT validation against Keycloak)
+- React 18 + Vite + keycloak-js (frontend)
 - Spotless (Google Java Format) enforced at build time
