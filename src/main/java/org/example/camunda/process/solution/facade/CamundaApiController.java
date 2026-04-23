@@ -4,9 +4,9 @@ import io.camunda.client.CamundaClient;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -21,7 +21,8 @@ public class CamundaApiController {
   }
 
   @GetMapping("/camunda/userTasks")
-  public List<?> getUserTasksByAssignee(@RequestParam String assignee) {
+  public List<?> getUserTasksByAssignee(JwtAuthenticationToken authentication) {
+    String assignee = (String) authentication.getToken().getClaims().get("preferred_username");
     LOG.info("Fetching user tasks assigned to: {}", assignee);
     return camundaClient
         .newUserTaskSearchRequest()
