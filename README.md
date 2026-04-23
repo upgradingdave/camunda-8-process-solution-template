@@ -29,6 +29,76 @@ Run the application via
 ./mvnw spring-boot:run
 ```
 
+## REST API
+
+The application exposes a REST API under `/api`, protected by JWT tokens issued by Keycloak.
+
+### Endpoints
+
+| Method | Path | Description |
+|--------|------|-------------|
+| POST | `/process/start` | Start a new process instance |
+| POST | `/process/message/{messageName}/{correlationKey}` | Publish a message to a running instance |
+| GET | `/api/camunda/userTasks` | Return all user tasks assigned to the authenticated user |
+
+### Authentication
+
+All `/api/**` endpoints require a valid Bearer token from Keycloak. The backend validates tokens against:
+
+```
+spring.security.oauth2.resourceserver.jwt.issuer-uri=<your-keycloak-realm-url>
+```
+
+The `/api/camunda/userTasks` endpoint extracts the caller's `preferred_username` from the JWT and uses it as the assignee filter — users can only retrieve their own tasks.
+
+---
+
+## React Task List UI
+
+A React frontend is included in the `frontend/` directory. It authenticates via Keycloak (PKCE flow) and displays user tasks assigned to the logged-in user.
+
+### Keycloak setup (one-time)
+
+Create a new client in Keycloak for the React app:
+
+| Setting | Value |
+|---------|-------|
+| Client ID | `camunda-react-app` |
+| Client authentication | OFF (public client) |
+| Authentication flow | Standard flow only |
+| Valid redirect URIs | `http://localhost:3000/*` |
+| Web origins | `http://localhost:3000` |
+
+No service account or roles are needed — this client only handles user login.
+
+Update `frontend/src/keycloak.js` if your Keycloak URL or realm name differs.
+
+### Starting the frontend
+
+```bash
+cd frontend
+npm install       # first time only
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000). The app will redirect to Keycloak login, then display your assigned tasks or show _"All caught up, you have no tasks assigned."_
+
+The frontend proxies `/api` requests to the Spring Boot backend at `localhost:8080`, so both must be running.
+
+### Starting everything together
+
+Terminal 1 — backend:
+```bash
+./mvnw spring-boot:run
+```
+
+Terminal 2 — frontend:
+```bash
+cd frontend && npm run dev
+```
+
+---
+
 ### Build a Docker image
 
 You can build an OCI image directly from Maven using Spring Boot Buildpacks:
