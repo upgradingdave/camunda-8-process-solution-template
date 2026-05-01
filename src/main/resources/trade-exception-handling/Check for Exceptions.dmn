@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Definitions_035xb3g" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Web Modeler" exporterVersion="35a6d3d" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
+  <decision id="check-for-exceptions-0c5v6tv" name="Check for Exceptions">
+    <informationRequirement id="InformationRequirement_1t53b6t">
+      <requiredDecision href="#Decision_0xk67c9" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_0fhod10" hitPolicy="COLLECT">
+      <input id="Input_1" label="Order Symbol">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>orderSymbol</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_17myj43" label="Price deviation">
+        <inputExpression id="LiteralExpression_18gugbj" typeRef="number">
+          <text>priceDeviation</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Exception Found?" name="exceptionFound" typeRef="boolean" />
+      <output id="OutputClause_1qg4sma" label="Exception Type" name="exceptionType" typeRef="string" />
+      <rule id="DecisionRule_01a222x">
+        <description>Order Error. This Order will be rejected</description>
+        <inputEntry id="UnaryTests_1m7skov">
+          <text>"ERROR"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1fm08rs">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1w31z9f">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_03dh5bx">
+          <text>"invalidSymbol"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_01rgczn">
+        <description>Most recent market price is more than 1% different than order price</description>
+        <inputEntry id="UnaryTests_1sbekmb">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_00e8zdg">
+          <text>&gt;=1</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1sxf8p1">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0e632ut">
+          <text>"priceDiscrepency"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="Decision_0xk67c9" name="Price difference (percentage)">
+    <variable id="InformationItem_17itjva" name="priceDeviation" typeRef="number" />
+    <literalExpression id="LiteralExpression_067ddmf">
+      <text>{
+  costDifference: abs(price - quote.close),
+  result: (costDifference / price) * 100
+}.result</text>
+    </literalExpression>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="check-for-exceptions-0c5v6tv">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0va2xr1" dmnElementRef="Decision_0xk67c9">
+        <dc:Bounds height="80" width="180" x="160" y="240" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1w7spw4" dmnElementRef="InformationRequirement_1t53b6t">
+        <di:waypoint x="250" y="240" />
+        <di:waypoint x="250" y="200" />
+        <di:waypoint x="250" y="180" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

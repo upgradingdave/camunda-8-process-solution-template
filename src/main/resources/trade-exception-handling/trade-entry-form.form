@@ -1,0 +1,191 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.8.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "35a6d3d"
+  },
+  "schemaVersion": 19,
+  "id": "Form_1763404708542",
+  "components": [
+    {
+      "label": "Trade Id",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1d3560r",
+        "columns": null
+      },
+      "id": "Field_0hpeogu",
+      "key": "tradeId",
+      "appearance": {
+        "prefixAdorner": "🆔"
+      },
+      "description": "Unique identifier assigned to this trade order",
+      "readonly": true,
+      "conditional": {
+        "hide": "=tradeId = null or tradeId = \"\""
+      }
+    },
+    {
+      "label": "Escalate?",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_03tg46s",
+        "columns": null
+      },
+      "id": "Field_11l7tmj",
+      "key": "escalate",
+      "conditional": {
+        "hide": "=tradeId = null or tradeId = \"\""
+      }
+    },
+    {
+      "label": "Instrument Symbol",
+      "type": "textfield",
+      "information": "Symbol of the financial instrument",
+      "key": "symbol",
+      "layout": {
+        "row": "row_1",
+        "columns": null
+      },
+      "id": "textfield_1",
+      "description": "Ticker symbol of the financial instrument",
+      "appearance": {
+        "prefixAdorner": "💹"
+      },
+      "validate": {
+        "required": true,
+        "minLength": 1,
+        "maxLength": 10,
+        "pattern": "^[A-Z]{1,10}$"
+      }
+    },
+    {
+      "label": "Quantity",
+      "type": "number",
+      "information": "Number of units of the financial instrument",
+      "key": "quantity",
+      "layout": {
+        "row": "row_2",
+        "columns": null
+      },
+      "id": "number_2",
+      "description": "Number of units to trade",
+      "decimalDigits": 0,
+      "defaultValue": 1,
+      "appearance": {
+        "prefixAdorner": "🔢"
+      },
+      "validate": {
+        "required": true,
+        "step": 1,
+        "min": 1,
+        "max": 1000000
+      }
+    },
+    {
+      "label": "Price per Unit",
+      "type": "number",
+      "information": "Price per unit of the financial instrument",
+      "key": "price",
+      "layout": {
+        "row": "row_2",
+        "columns": null
+      },
+      "id": "number_3",
+      "description": "Price for each unit of the instrument",
+      "decimalDigits": 2,
+      "appearance": {
+        "prefixAdorner": "💰"
+      },
+      "validate": {
+        "required": true,
+        "step": 0.01,
+        "min": 0,
+        "max": 1000000
+      }
+    },
+    {
+      "label": "Order Type",
+      "values": [
+        {
+          "value": "Buy",
+          "label": "Buy"
+        },
+        {
+          "value": "Sell",
+          "label": "Sell"
+        },
+        {
+          "value": "Hold",
+          "label": "Hold"
+        }
+      ],
+      "type": "select",
+      "information": "Type of the trade order (e.g., buy, sell)",
+      "key": "orderType",
+      "layout": {
+        "row": "row_3",
+        "columns": null
+      },
+      "id": "select_1",
+      "description": "Select whether to buy or sell",
+      "validate": {
+        "required": true
+      },
+      "defaultValue": "Buy"
+    },
+    {
+      "subtype": "datetime",
+      "type": "datetime",
+      "information": "Date and time when the trade order was placed",
+      "key": "orderDate",
+      "layout": {
+        "row": "row_4",
+        "columns": null
+      },
+      "id": "datetime_1",
+      "dateLabel": "Order Date",
+      "timeLabel": "Order Time",
+      "description": "Date and time when the order was placed",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Order Status",
+      "type": "textfield",
+      "information": "Current status of the trade order",
+      "key": "status",
+      "layout": {
+        "row": "row_5",
+        "columns": null
+      },
+      "id": "textfield_2",
+      "description": "Current status of the trade order",
+      "defaultValue": "Pending",
+      "appearance": {
+        "prefixAdorner": "📊"
+      },
+      "validate": {
+        "required": true,
+        "minLength": 3,
+        "maxLength": 20,
+        "pattern": "^(Pending|Completed|Cancelled|Failed)$"
+      }
+    },
+    {
+      "label": "Account",
+      "type": "select",
+      "layout": {
+        "row": "row_6",
+        "columns": null
+      },
+      "id": "Field_09tsfu6",
+      "key": "accountId",
+      "valuesExpression": "=accounts.items"
+    }
+  ],
+  "generated": true,
+  "type": "default"
+}
