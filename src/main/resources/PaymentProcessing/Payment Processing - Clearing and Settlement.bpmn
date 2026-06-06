@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_ClearingSettlement" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="204af60" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_ClearingSettlement" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="69d2c1a" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
   <bpmn:message id="Message_ClearingBatch" name="ClearingBatchReceived" />
   <bpmn:error id="Error_SettlementFailed" name="Settlement Failed" errorCode="SETTLEMENT_FAILED" />
   <bpmn:process id="ClearingAndSettlementProcess" name="Clearing and Settlement" isExecutable="true">
@@ -58,15 +58,6 @@
     <bpmn:endEvent id="EndEvent_ClearingMismatch" name="Clearing mismatch investigated">
       <bpmn:incoming>Flow_Investigate_to_End</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:boundaryEvent id="BoundaryEvent_CompMatch" name="Compensate match" cancelActivity="false" attachedToRef="Task_MatchClearingRecord">
-      <bpmn:compensateEventDefinition id="CompEvtDef_Match" />
-    </bpmn:boundaryEvent>
-    <bpmn:boundaryEvent id="BoundaryEvent_CompDebit" name="Compensate debit" cancelActivity="false" attachedToRef="Task_DebitCardholderAccount">
-      <bpmn:compensateEventDefinition id="CompEvtDef_Debit" />
-    </bpmn:boundaryEvent>
-    <bpmn:boundaryEvent id="BoundaryEvent_CompCredit" name="Compensate credit" cancelActivity="false" attachedToRef="Task_CreditMerchantAccount">
-      <bpmn:compensateEventDefinition id="CompEvtDef_Credit" />
-    </bpmn:boundaryEvent>
     <bpmn:serviceTask id="Task_RejectClearingRecord" name="Reject clearing record" isForCompensation="true">
       <bpmn:extensionElements>
         <zeebe:taskDefinition type="reject-clearing-record" retries="3" />
@@ -125,9 +116,18 @@
     <bpmn:sequenceFlow id="Flow_Failure_to_Notify" sourceRef="Gateway_SettlementFailure" targetRef="Task_NotifySettlementFailure" />
     <bpmn:sequenceFlow id="Flow_Notify_to_CompThrow" sourceRef="Task_NotifySettlementFailure" targetRef="IntThrow_Compensate" />
     <bpmn:sequenceFlow id="Flow_CompThrow_to_End" sourceRef="IntThrow_Compensate" targetRef="EndEvent_SettlementFailed" />
-    <bpmn:association id="Assoc_CompMatch" associationDirection="One" sourceRef="BoundaryEvent_CompMatch" targetRef="Task_RejectClearingRecord" />
-    <bpmn:association id="Assoc_CompDebit" associationDirection="One" sourceRef="BoundaryEvent_CompDebit" targetRef="Task_ReverseCardholderDebit" />
-    <bpmn:association id="Assoc_CompCredit" associationDirection="One" sourceRef="BoundaryEvent_CompCredit" targetRef="Task_ReverseMerchantCredit" />
+    <bpmn:boundaryEvent id="BoundaryEvent_CompMatch" name="Compensate match" attachedToRef="Task_MatchClearingRecord">
+      <bpmn:compensateEventDefinition id="CompensateEventDefinition_0qwy1rj" />
+    </bpmn:boundaryEvent>
+    <bpmn:boundaryEvent id="BoundaryEvent_CompDebit" name="Compensate debit" attachedToRef="Task_DebitCardholderAccount">
+      <bpmn:compensateEventDefinition id="CompensateEventDefinition_1nouet7" />
+    </bpmn:boundaryEvent>
+    <bpmn:boundaryEvent id="BoundaryEvent_CompCredit" name="Compensate credit" attachedToRef="Task_CreditMerchantAccount">
+      <bpmn:compensateEventDefinition id="CompensateEventDefinition_00pu31l" />
+    </bpmn:boundaryEvent>
+    <bpmn:association id="Association_0h4v3wb" associationDirection="One" sourceRef="BoundaryEvent_CompMatch" targetRef="Task_RejectClearingRecord" />
+    <bpmn:association id="Association_0z54oab" associationDirection="One" sourceRef="BoundaryEvent_CompDebit" targetRef="Task_ReverseCardholderDebit" />
+    <bpmn:association id="Association_0570jws" associationDirection="One" sourceRef="BoundaryEvent_CompCredit" targetRef="Task_ReverseMerchantCredit" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_ClearingSettlement">
     <bpmndi:BPMNPlane id="BPMNPlane_ClearingSettlement" bpmnElement="ClearingAndSettlementProcess">
@@ -150,93 +150,93 @@
         <dc:Bounds x="695" y="140" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Shape_Task_CreditMerchantAccount" bpmnElement="Task_CreditMerchantAccount">
-        <dc:Bounds x="865" y="140" width="100" height="80" />
+        <dc:Bounds x="905" y="140" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Shape_Task_SendSettlementAdvice" bpmnElement="Task_SendSettlementAdvice">
-        <dc:Bounds x="1035" y="140" width="100" height="80" />
+        <dc:Bounds x="1075" y="140" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Shape_EndEvent_SettlementComplete" bpmnElement="EndEvent_SettlementComplete">
-        <dc:Bounds x="1205" y="162" width="36" height="36" />
+        <dc:Bounds x="1245" y="162" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1197" y="205" width="53" height="27" />
+          <dc:Bounds x="1237" y="205" width="53" height="27" />
         </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Shape_Task_InvestigateClearingMismatch" bpmnElement="Task_InvestigateClearingMismatch">
-        <dc:Bounds x="465" y="260" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Shape_EndEvent_ClearingMismatch" bpmnElement="EndEvent_ClearingMismatch">
-        <dc:Bounds x="497" y="372" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="486" y="415" width="59" height="40" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Shape_Task_RejectClearingRecord" bpmnElement="Task_RejectClearingRecord">
-        <dc:Bounds x="330" y="450" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Shape_Task_ReverseCardholderDebit" bpmnElement="Task_ReverseCardholderDebit">
-        <dc:Bounds x="675" y="450" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Shape_Task_ReverseMerchantCredit" bpmnElement="Task_ReverseMerchantCredit">
-        <dc:Bounds x="845" y="450" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Shape_Gateway_SettlementFailure" bpmnElement="Gateway_SettlementFailure" isMarkerVisible="true">
-        <dc:Bounds x="805" y="25" width="50" height="50" />
+        <dc:Bounds x="845" y="25" width="50" height="50" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Shape_Task_NotifySettlementFailure" bpmnElement="Task_NotifySettlementFailure">
-        <dc:Bounds x="915" y="10" width="100" height="80" />
+        <dc:Bounds x="955" y="10" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Shape_IntThrow_Compensate" bpmnElement="IntThrow_Compensate">
-        <dc:Bounds x="1077" y="32" width="36" height="36" />
+        <dc:Bounds x="1117" y="32" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1061" y="75" width="69" height="27" />
+          <dc:Bounds x="1101" y="75" width="69" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Shape_EndEvent_SettlementFailed" bpmnElement="EndEvent_SettlementFailed">
-        <dc:Bounds x="1197" y="32" width="36" height="36" />
+        <dc:Bounds x="1237" y="32" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1182" y="75" width="67" height="40" />
+          <dc:Bounds x="1222" y="75" width="67" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Edge_Assoc_CompMatch" bpmnElement="Assoc_CompMatch">
+      <bpmndi:BPMNShape id="Shape_Task_RejectClearingRecord" bpmnElement="Task_RejectClearingRecord">
+        <dc:Bounds x="315" y="300" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Task_ReverseCardholderDebit" bpmnElement="Task_ReverseCardholderDebit">
+        <dc:Bounds x="675" y="300" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Task_ReverseMerchantCredit" bpmnElement="Task_ReverseMerchantCredit">
+        <dc:Bounds x="885" y="300" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_EndEvent_ClearingMismatch" bpmnElement="EndEvent_ClearingMismatch">
+        <dc:Bounds x="497" y="422" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="486" y="465" width="59" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Task_InvestigateClearingMismatch" bpmnElement="Task_InvestigateClearingMismatch">
+        <dc:Bounds x="465" y="300" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_0h4v3wb_di" bpmnElement="Association_0h4v3wb">
         <di:waypoint x="365" y="238" />
-        <di:waypoint x="365" y="450" />
+        <di:waypoint x="365" y="300" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Edge_Assoc_CompDebit" bpmnElement="Assoc_CompDebit">
+      <bpmndi:BPMNEdge id="Association_0z54oab_di" bpmnElement="Association_0z54oab">
         <di:waypoint x="725" y="238" />
-        <di:waypoint x="725" y="450" />
+        <di:waypoint x="725" y="300" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Edge_Assoc_CompCredit" bpmnElement="Assoc_CompCredit">
-        <di:waypoint x="895" y="238" />
-        <di:waypoint x="895" y="450" />
+      <bpmndi:BPMNEdge id="Association_0570jws_di" bpmnElement="Association_0570jws">
+        <di:waypoint x="935" y="238" />
+        <di:waypoint x="935" y="300" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Shape_BoundaryEvent_CreditFailed" bpmnElement="BoundaryEvent_CreditFailed">
-        <dc:Bounds x="887" y="122" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="814" y="113" width="82" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Shape_BoundaryEvent_DebitFailed" bpmnElement="BoundaryEvent_DebitFailed">
         <dc:Bounds x="747" y="122" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="674" y="103" width="82" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Shape_BoundaryEvent_CompCredit" bpmnElement="BoundaryEvent_CompCredit">
-        <dc:Bounds x="877" y="202" width="36" height="36" />
+      <bpmndi:BPMNShape id="Event_1pl4cc4_di" bpmnElement="BoundaryEvent_CompMatch">
+        <dc:Bounds x="347" y="202" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="864" y="240" width="63" height="27" />
+          <dc:Bounds x="334" y="240" width="63" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Shape_BoundaryEvent_CompDebit" bpmnElement="BoundaryEvent_CompDebit">
+      <bpmndi:BPMNShape id="Event_1a1agl7_di" bpmnElement="BoundaryEvent_CompDebit">
         <dc:Bounds x="707" y="202" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="681" y="240" width="90" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Shape_BoundaryEvent_CompMatch" bpmnElement="BoundaryEvent_CompMatch">
-        <dc:Bounds x="347" y="202" width="36" height="36" />
+      <bpmndi:BPMNShape id="Shape_BoundaryEvent_CreditFailed" bpmnElement="BoundaryEvent_CreditFailed">
+        <dc:Bounds x="927" y="122" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="334" y="240" width="63" height="27" />
+          <dc:Bounds x="854" y="113" width="82" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_08weoxs_di" bpmnElement="BoundaryEvent_CompCredit">
+        <dc:Bounds x="917" y="202" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="904" y="240" width="63" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Edge_Flow_Start_to_Match" bpmnElement="Flow_Start_to_Match">
@@ -256,49 +256,49 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Edge_Flow_NotMatched" bpmnElement="Flow_NotMatched">
         <di:waypoint x="515" y="205" />
-        <di:waypoint x="515" y="260" />
+        <di:waypoint x="515" y="300" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="490" y="211" width="21" height="14" />
+          <dc:Bounds x="493" y="220" width="15" height="14" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_Flow_Investigate_to_End" bpmnElement="Flow_Investigate_to_End">
+        <di:waypoint x="515" y="380" />
+        <di:waypoint x="515" y="422" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Edge_Flow_Debit_to_Credit" bpmnElement="Flow_Debit_to_Credit">
         <di:waypoint x="795" y="180" />
-        <di:waypoint x="865" y="180" />
+        <di:waypoint x="905" y="180" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Edge_Flow_Credit_to_Advice" bpmnElement="Flow_Credit_to_Advice">
-        <di:waypoint x="965" y="180" />
-        <di:waypoint x="1035" y="180" />
+        <di:waypoint x="1005" y="180" />
+        <di:waypoint x="1075" y="180" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Edge_Flow_Advice_to_End" bpmnElement="Flow_Advice_to_End">
-        <di:waypoint x="1135" y="180" />
-        <di:waypoint x="1205" y="180" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Edge_Flow_Investigate_to_End" bpmnElement="Flow_Investigate_to_End">
-        <di:waypoint x="515" y="340" />
-        <di:waypoint x="515" y="372" />
+        <di:waypoint x="1175" y="180" />
+        <di:waypoint x="1245" y="180" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Edge_Flow_DebitError_to_Gateway" bpmnElement="Flow_DebitError_to_Gateway">
         <di:waypoint x="765" y="122" />
         <di:waypoint x="765" y="50" />
-        <di:waypoint x="805" y="50" />
+        <di:waypoint x="845" y="50" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Edge_Flow_CreditError_to_Gateway" bpmnElement="Flow_CreditError_to_Gateway">
-        <di:waypoint x="905" y="122" />
-        <di:waypoint x="905" y="110" />
-        <di:waypoint x="830" y="110" />
-        <di:waypoint x="830" y="75" />
+        <di:waypoint x="945" y="122" />
+        <di:waypoint x="945" y="110" />
+        <di:waypoint x="870" y="110" />
+        <di:waypoint x="870" y="75" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Edge_Flow_Failure_to_Notify" bpmnElement="Flow_Failure_to_Notify">
-        <di:waypoint x="855" y="50" />
-        <di:waypoint x="915" y="50" />
+        <di:waypoint x="895" y="50" />
+        <di:waypoint x="955" y="50" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Edge_Flow_Notify_to_CompThrow" bpmnElement="Flow_Notify_to_CompThrow">
-        <di:waypoint x="1015" y="50" />
-        <di:waypoint x="1077" y="50" />
+        <di:waypoint x="1055" y="50" />
+        <di:waypoint x="1117" y="50" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Edge_Flow_CompThrow_to_End" bpmnElement="Flow_CompThrow_to_End">
-        <di:waypoint x="1113" y="50" />
-        <di:waypoint x="1197" y="50" />
+        <di:waypoint x="1153" y="50" />
+        <di:waypoint x="1237" y="50" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
