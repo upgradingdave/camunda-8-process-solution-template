@@ -6,7 +6,7 @@
     </bpmn:startEvent>
     <bpmn:serviceTask id="Task_SubmitAndRouteTransaction" name="Submit and route transaction">
       <bpmn:extensionElements>
-        <zeebe:taskDefinition type="submit-and-route-transaction" retries="3" />
+        <zeebe:taskDefinition type="benchmark-task-1" retries="3" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_StartToSubmit</bpmn:incoming>
       <bpmn:outgoing>Flow_SubmitToSubProcess</bpmn:outgoing>
@@ -25,21 +25,21 @@
       </bpmn:parallelGateway>
       <bpmn:serviceTask id="Task_DetectFraud" name="Detect fraud">
         <bpmn:extensionElements>
-          <zeebe:taskDefinition type="detect-fraud" retries="3" />
+          <zeebe:taskDefinition type="benchmark-task-2" retries="3" />
         </bpmn:extensionElements>
         <bpmn:incoming>Flow_SplitToFraud</bpmn:incoming>
         <bpmn:outgoing>Flow_FraudToJoin</bpmn:outgoing>
       </bpmn:serviceTask>
       <bpmn:serviceTask id="Task_ScreenForAML" name="Screen for AML">
         <bpmn:extensionElements>
-          <zeebe:taskDefinition type="screen-for-aml" retries="3" />
+          <zeebe:taskDefinition type="benchmark-task-3" retries="3" />
         </bpmn:extensionElements>
         <bpmn:incoming>Flow_SplitToAML</bpmn:incoming>
         <bpmn:outgoing>Flow_AMLToJoin</bpmn:outgoing>
       </bpmn:serviceTask>
       <bpmn:serviceTask id="Task_VerifyAccountBalance" name="Verify account balance">
         <bpmn:extensionElements>
-          <zeebe:taskDefinition type="verify-account-balance" retries="3" />
+          <zeebe:taskDefinition type="benchmark-task-4" retries="3" />
         </bpmn:extensionElements>
         <bpmn:incoming>Flow_SplitToBalance</bpmn:incoming>
         <bpmn:outgoing>Flow_BalanceToJoin</bpmn:outgoing>
@@ -70,21 +70,21 @@
     </bpmn:boundaryEvent>
     <bpmn:serviceTask id="Task_SlaTimeout_TriggerCompensation" name="Trigger compensation">
       <bpmn:extensionElements>
-        <zeebe:taskDefinition type="trigger-compensation" retries="3" />
+        <zeebe:taskDefinition type="benchmark-task-5" retries="3" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_Timer_to_TriggerComp</bpmn:incoming>
       <bpmn:outgoing>Flow_TriggerComp_to_BuildDecline</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:serviceTask id="Task_SlaTimeout_BuildDeclineResponse" name="Build timeout decline response">
       <bpmn:extensionElements>
-        <zeebe:taskDefinition type="build-timeout-decline-response" retries="3" />
+        <zeebe:taskDefinition type="benchmark-task-6" retries="3" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_TriggerComp_to_BuildDecline</bpmn:incoming>
       <bpmn:outgoing>Flow_BuildDecline_to_Publish</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:serviceTask id="Task_SlaTimeout_PublishTimeoutEvent" name="Publish timeout event">
       <bpmn:extensionElements>
-        <zeebe:taskDefinition type="publish-timeout-event" retries="3" />
+        <zeebe:taskDefinition type="benchmark-task-9" retries="3" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_BuildDecline_to_Publish</bpmn:incoming>
       <bpmn:outgoing>Flow_Publish_to_TimeoutEnd</bpmn:outgoing>
@@ -112,7 +112,7 @@
     </bpmn:exclusiveGateway>
     <bpmn:serviceTask id="Task_SendAuthorizationResponse" name="Send authorization response">
       <bpmn:extensionElements>
-        <zeebe:taskDefinition type="send-authorization-response" retries="3" />
+        <zeebe:taskDefinition type="benchmark-task-7" retries="3" />
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_AuthorizedApproved</bpmn:incoming>
       <bpmn:outgoing>Flow_ResponseToApprovedEnd</bpmn:outgoing>
@@ -122,7 +122,7 @@
     </bpmn:endEvent>
     <bpmn:serviceTask id="Task_DeclineAndReleaseEarmark" name="Decline and release earmark">
       <bpmn:extensionElements>
-        <zeebe:taskDefinition type="decline-and-release-earmark" retries="3" />
+        <zeebe:taskDefinition type="benchmark-task-8" retries="3" />
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_AuthorizedDeclined</bpmn:incoming>
       <bpmn:outgoing>Flow_DeclineToDeclinedEnd</bpmn:outgoing>
@@ -167,48 +167,6 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Task_SubmitAndRouteTransaction_di" bpmnElement="Task_SubmitAndRouteTransaction">
         <dc:Bounds x="337" y="210" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_Authorized_di" bpmnElement="Gateway_Authorized" isMarkerVisible="true">
-        <dc:Bounds x="1197" y="225" width="50" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1192" y="201" width="59" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_SendAuthorizationResponse_di" bpmnElement="Task_SendAuthorizationResponse">
-        <dc:Bounds x="1307" y="210" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_DeclineAndReleaseEarmark_di" bpmnElement="Task_DeclineAndReleaseEarmark">
-        <dc:Bounds x="1307" y="340" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_SlaTimeout_TriggerCompensation_di" bpmnElement="Task_SlaTimeout_TriggerCompensation">
-        <dc:Bounds x="1070" y="480" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_SlaTimeout_BuildDeclineResponse_di" bpmnElement="Task_SlaTimeout_BuildDeclineResponse">
-        <dc:Bounds x="1210" y="480" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_SlaTimeout_PublishTimeoutEvent_di" bpmnElement="Task_SlaTimeout_PublishTimeoutEvent">
-        <dc:Bounds x="1350" y="480" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="EndEvent_SlaTimeout_di" bpmnElement="EndEvent_SlaTimeout">
-        <dc:Bounds x="1502" y="502" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1486" y="538" width="69" height="40" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="EndEvent_AuthorizationDeclined_di" bpmnElement="EndEvent_AuthorizationDeclined">
-        <dc:Bounds x="1502" y="362" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1488" y="398" width="65" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="EndEvent_AuthorizationApproved_di" bpmnElement="EndEvent_AuthorizationApproved">
-        <dc:Bounds x="1502" y="232" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1488" y="268" width="65" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_AuthorizeTransaction_di" bpmnElement="Task_AuthorizeTransaction">
-        <dc:Bounds x="1040" y="210" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="SubProcess_ParallelChecks_di" bpmnElement="SubProcess_ParallelChecks" isExpanded="true">
         <dc:Bounds x="492" y="170" width="500" height="440" />
@@ -276,26 +234,62 @@
         <di:waypoint x="910" y="250" />
         <di:waypoint x="942" y="250" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Association_Start_di" bpmnElement="Association_Start">
-        <di:waypoint x="267" y="232" />
-        <di:waypoint x="267" y="180" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Association_DeclinedEnd_di" bpmnElement="Association_DeclinedEnd">
-        <di:waypoint x="1537" y="374" />
-        <di:waypoint x="1590" y="355" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Association_ApprovedEnd_di" bpmnElement="Association_ApprovedEnd">
-        <di:waypoint x="1527" y="233" />
-        <di:waypoint x="1545" y="187" />
-      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Task_SlaTimeout_TriggerCompensation_di" bpmnElement="Task_SlaTimeout_TriggerCompensation">
+        <dc:Bounds x="1070" y="480" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_SlaTimeout_BuildDeclineResponse_di" bpmnElement="Task_SlaTimeout_BuildDeclineResponse">
+        <dc:Bounds x="1210" y="480" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_SlaTimeout_PublishTimeoutEvent_di" bpmnElement="Task_SlaTimeout_PublishTimeoutEvent">
+        <dc:Bounds x="1350" y="480" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_SlaTimeout_di" bpmnElement="EndEvent_SlaTimeout">
+        <dc:Bounds x="1502" y="502" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1486" y="538" width="69" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AuthorizeTransaction_di" bpmnElement="Task_AuthorizeTransaction">
+        <dc:Bounds x="1040" y="210" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_Authorized_di" bpmnElement="Gateway_Authorized" isMarkerVisible="true">
+        <dc:Bounds x="1197" y="225" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1192" y="201" width="59" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_SendAuthorizationResponse_di" bpmnElement="Task_SendAuthorizationResponse">
+        <dc:Bounds x="1307" y="210" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_AuthorizationApproved_di" bpmnElement="EndEvent_AuthorizationApproved">
+        <dc:Bounds x="1502" y="232" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1488" y="268" width="65" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_DeclineAndReleaseEarmark_di" bpmnElement="Task_DeclineAndReleaseEarmark">
+        <dc:Bounds x="1307" y="340" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_AuthorizationDeclined_di" bpmnElement="EndEvent_AuthorizationDeclined">
+        <dc:Bounds x="1502" y="362" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1488" y="398" width="65" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_Start_di" bpmnElement="TextAnnotation_Start">
+        <dc:Bounds x="167" y="122" width="200" height="58" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_ApprovedEnd_di" bpmnElement="TextAnnotation_ApprovedEnd">
+        <dc:Bounds x="1470" y="115" width="200" height="72" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_DeclinedEnd_di" bpmnElement="TextAnnotation_DeclinedEnd">
+        <dc:Bounds x="1590" y="280" width="200" height="86" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BoundaryEvent_SlaTimer_di" bpmnElement="BoundaryEvent_SlaTimer">
         <dc:Bounds x="974" y="502" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="963.5" y="466" width="57" height="27" />
         </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="TextAnnotation_Start_di" bpmnElement="TextAnnotation_Start">
-        <dc:Bounds x="167" y="122" width="200" height="58" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_StartToSubmit_di" bpmnElement="Flow_StartToSubmit">
         <di:waypoint x="285" y="250" />
@@ -312,6 +306,18 @@
       <bpmndi:BPMNEdge id="Flow_Timer_to_TriggerComp_di" bpmnElement="Flow_Timer_to_TriggerComp">
         <di:waypoint x="1010" y="520" />
         <di:waypoint x="1070" y="520" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_TriggerComp_to_BuildDecline_di" bpmnElement="Flow_TriggerComp_to_BuildDecline">
+        <di:waypoint x="1170" y="520" />
+        <di:waypoint x="1210" y="520" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_BuildDecline_to_Publish_di" bpmnElement="Flow_BuildDecline_to_Publish">
+        <di:waypoint x="1310" y="520" />
+        <di:waypoint x="1350" y="520" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_Publish_to_TimeoutEnd_di" bpmnElement="Flow_Publish_to_TimeoutEnd">
+        <di:waypoint x="1450" y="520" />
+        <di:waypoint x="1502" y="520" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_AuthorizeToGateway_di" bpmnElement="Flow_AuthorizeToGateway">
         <di:waypoint x="1140" y="250" />
@@ -340,24 +346,18 @@
         <di:waypoint x="1407" y="380" />
         <di:waypoint x="1502" y="380" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_TriggerComp_to_BuildDecline_di" bpmnElement="Flow_TriggerComp_to_BuildDecline">
-        <di:waypoint x="1170" y="520" />
-        <di:waypoint x="1210" y="520" />
+      <bpmndi:BPMNEdge id="Association_Start_di" bpmnElement="Association_Start">
+        <di:waypoint x="267" y="232" />
+        <di:waypoint x="267" y="180" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_BuildDecline_to_Publish_di" bpmnElement="Flow_BuildDecline_to_Publish">
-        <di:waypoint x="1310" y="520" />
-        <di:waypoint x="1350" y="520" />
+      <bpmndi:BPMNEdge id="Association_ApprovedEnd_di" bpmnElement="Association_ApprovedEnd">
+        <di:waypoint x="1527" y="233" />
+        <di:waypoint x="1545" y="187" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_Publish_to_TimeoutEnd_di" bpmnElement="Flow_Publish_to_TimeoutEnd">
-        <di:waypoint x="1450" y="520" />
-        <di:waypoint x="1502" y="520" />
+      <bpmndi:BPMNEdge id="Association_DeclinedEnd_di" bpmnElement="Association_DeclinedEnd">
+        <di:waypoint x="1537" y="374" />
+        <di:waypoint x="1590" y="355" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="TextAnnotation_DeclinedEnd_di" bpmnElement="TextAnnotation_DeclinedEnd">
-        <dc:Bounds x="1590" y="280" width="200" height="86" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="TextAnnotation_ApprovedEnd_di" bpmnElement="TextAnnotation_ApprovedEnd">
-        <dc:Bounds x="1470" y="115" width="200" height="72" />
-      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
