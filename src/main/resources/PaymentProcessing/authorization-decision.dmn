@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="Definitions_authorization-decision" name="Authorization Decision" namespace="http://camunda.org/schema/1.0/dmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.5">
+
+  <decision id="authorization-decision" name="Authorization Decision">
+    <decisionTable id="dt_authorization-decision" hitPolicy="FIRST">
+
+      <input id="in_fraudAction" label="Fraud Action">
+        <inputExpression id="inExpr_fraudAction" typeRef="string">
+          <text>fraudAction</text>
+        </inputExpression>
+      </input>
+      <input id="in_amlResult" label="AML Result">
+        <inputExpression id="inExpr_amlResult" typeRef="string">
+          <text>amlResult</text>
+        </inputExpression>
+      </input>
+      <input id="in_sufficientFunds" label="Sufficient Funds">
+        <inputExpression id="inExpr_sufficientFunds" typeRef="boolean">
+          <text>sufficientFunds</text>
+        </inputExpression>
+      </input>
+      <input id="in_accountStatus" label="Account Status">
+        <inputExpression id="inExpr_accountStatus" typeRef="string">
+          <text>accountStatus</text>
+        </inputExpression>
+      </input>
+
+      <output id="out_authorizationDecision" name="authorizationDecision" label="Authorization Decision" typeRef="string" />
+      <output id="out_responseCode" name="responseCode" label="Response Code" typeRef="string" />
+      <output id="out_declineReason" name="declineReason" label="Decline Reason" typeRef="string" />
+
+      <!-- Rule 1: Fraud detected — highest priority -->
+      <rule id="rule_fraud_decline">
+        <description>Fraud engine decisioned DECLINE</description>
+        <inputEntry id="ie_r1_fraud"><text>"DECLINE"</text></inputEntry>
+        <inputEntry id="ie_r1_aml"><text></text></inputEntry>
+        <inputEntry id="ie_r1_funds"><text></text></inputEntry>
+        <inputEntry id="ie_r1_account"><text></text></inputEntry>
+        <outputEntry id="oe_r1_decision"><text>"DECLINED"</text></outputEntry>
+        <outputEntry id="oe_r1_code"><text>"59"</text></outputEntry>
+        <outputEntry id="oe_r1_reason"><text>"fraud-detected"</text></outputEntry>
+      </rule>
+
+      <!-- Rule 2: AML / sanctions match -->
+      <rule id="rule_aml_decline">
+        <description>AML sanctions screening returned MATCH or DECLINE</description>
+        <inputEntry id="ie_r2_fraud"><text></text></inputEntry>
+        <inputEntry id="ie_r2_aml"><text>"MATCH","DECLINE"</text></inputEntry>
+        <inputEntry id="ie_r2_funds"><text></text></inputEntry>
+        <inputEntry id="ie_r2_account"><text></text></inputEntry>
+        <outputEntry id="oe_r2_decision"><text>"DECLINED"</text></outputEntry>
+        <outputEntry id="oe_r2_code"><text>"57"</text></outputEntry>
+        <outputEntry id="oe_r2_reason"><text>"aml-match"</text></outputEntry>
+      </rule>
+
+      <!-- Rule 3: Insufficient funds / earmark placement failed -->
+      <rule id="rule_nsf_decline">
+        <description>Insufficient funds or earmark placement failed</description>
+        <inputEntry id="ie_r3_fraud"><text></text></inputEntry>
+        <inputEntry id="ie_r3_aml"><text></text></inputEntry>
+        <inputEntry id="ie_r3_funds"><text>false</text></inputEntry>
+        <inputEntry id="ie_r3_account"><text></text></inputEntry>
+        <outputEntry id="oe_r3_decision"><text>"DECLINED"</text></outputEntry>
+        <outputEntry id="oe_r3_code"><text>"51"</text></outputEntry>
+        <outputEntry id="oe_r3_reason"><text>"insufficient-funds"</text></outputEntry>
+      </rule>
+
+      <!-- Rule 4: Account restricted (frozen or closed) -->
+      <rule id="rule_account_decline">
+        <description>Account is frozen or closed</description>
+        <inputEntry id="ie_r4_fraud"><text></text></inputEntry>
+        <inputEntry id="ie_r4_aml"><text></text></inputEntry>
+        <inputEntry id="ie_r4_funds"><text></text></inputEntry>
+        <inputEntry id="ie_r4_account"><text>"FROZEN","CLOSED"</text></inputEntry>
+        <outputEntry id="oe_r4_decision"><text>"DECLINED"</text></outputEntry>
+        <outputEntry id="oe_r4_code"><text>"62"</text></outputEntry>
+        <outputEntry id="oe_r4_reason"><text>"account-restricted"</text></outputEntry>
+      </rule>
+
+      <!-- Rule 5: Default — all checks pass, approve -->
+      <rule id="rule_approved">
+        <description>All checks passed — approve transaction</description>
+        <inputEntry id="ie_r5_fraud"><text></text></inputEntry>
+        <inputEntry id="ie_r5_aml"><text></text></inputEntry>
+        <inputEntry id="ie_r5_funds"><text></text></inputEntry>
+        <inputEntry id="ie_r5_account"><text></text></inputEntry>
+        <outputEntry id="oe_r5_decision"><text>"APPROVED"</text></outputEntry>
+        <outputEntry id="oe_r5_code"><text>"00"</text></outputEntry>
+        <outputEntry id="oe_r5_reason"><text>null</text></outputEntry>
+      </rule>
+
+    </decisionTable>
+  </decision>
+
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="authorization-decision">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
