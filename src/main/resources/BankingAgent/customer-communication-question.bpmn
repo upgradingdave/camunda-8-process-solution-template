@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_09w5b7d" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="72f97ba" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.8.0">
+  <bpmn:process id="customer-communication-question" name="Customer communication question" isExecutable="true">
+    <bpmn:extensionElements />
+    <bpmn:startEvent id="StartEvent_1" name="Information from customer needed">
+      <bpmn:outgoing>Flow_1q78z4g</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:exclusiveGateway id="Gateway_1y5hfxn" name="Communication Channel" default="Flow_0hkpmky">
+      <bpmn:incoming>Flow_1q78z4g</bpmn:incoming>
+      <bpmn:outgoing>Flow_0j31jhn</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1996dj8</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0hkpmky</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1q78z4g" sourceRef="StartEvent_1" targetRef="Gateway_1y5hfxn" />
+    <bpmn:serviceTask id="Reply_with_email_to_customer" name="Ask customer via email" zeebe:modelerTemplate="io.camunda.connectors.email.v1" zeebe:modelerTemplateVersion="2" zeebe:modelerTemplateIcon="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzkwXzI0MjApIj4KPHBhdGggZD0iTTguMzM4MzUgOS45NTM2NUwxMC4zODk0IDEyLjAxMDRMOC4zMzI2MiAxNC4wNjcyTDkuMTQ2MTYgMTQuODc1TDEyLjAxMDcgMTIuMDEwNEw5LjE0NjE2IDkuMTQ1ODNMOC4zMzgzNSA5Ljk1MzY1WiIgZmlsbD0iYmxhY2siLz4KPHBhdGggZD0iTTEyLjM0ODggOS45NTM2NUwxNC4zOTk4IDEyLjAxMDRMMTIuMzQzIDE0LjA2NzJMMTMuMTU2NiAxNC44NzVMMTYuMDIxMiAxMi4wMTA0TDEzLjE1NjYgOS4xNDU4M0wxMi4zNDg4IDkuOTUzNjVaIiBmaWxsPSJibGFjayIvPgo8cGF0aCBkPSJNMy45NzIgMTEuNDM3NUgxLjEyNTMzVjIuNzkyMTlMNy42NzM3NiA3LjMyMzk2QzcuNzY5NjcgNy4zOTA0OSA3Ljg4MzYgNy40MjYxNCA4LjAwMDMyIDcuNDI2MTRDOC4xMTcwNSA3LjQyNjE0IDguMjMwOTggNy4zOTA0OSA4LjMyNjg5IDcuMzIzOTZMMTQuODc1MyAyLjc5MjE5VjhIMTYuMDIxMlYyLjI3MDgzQzE2LjAyMTIgMS45NjY5NCAxNS45MDA0IDEuNjc1NDkgMTUuNjg1NiAxLjQ2MDYxQzE1LjQ3MDcgMS4yNDU3MiAxNS4xNzkyIDEuMTI1IDE0Ljg3NTMgMS4xMjVIMS4xMjUzM0MwLjgyMTQzMiAxLjEyNSAwLjUyOTk4NCAxLjI0NTcyIDAuMzE1MDk5IDEuNDYwNjFDMC4xMDAyMTQgMS42NzU0OSAtMC4wMjA1MDc4IDEuOTY2OTQgLTAuMDIwNTA3OCAyLjI3MDgzVjExLjQzNzVDLTAuMDIwNTA3OCAxMS43NDE0IDAuMTAwMjE0IDEyLjAzMjggMC4zMTUwOTkgMTIuMjQ3N0MwLjUyOTk4NCAxMi40NjI2IDAuODIxNDMyIDEyLjU4MzMgMS4xMjUzMyAxMi41ODMzSDMuOTcyVjExLjQzNzVaTTEzLjYxNDkgMi4yNzA4M0w4LjAwMDMyIDYuMTU1MjFMMi4zODU3NCAyLjI3MDgzSDEzLjYxNDlaIiBmaWxsPSIjRkM1RDBEIi8+CjxwYXRoIGQ9Ik00LjI4MjEgOS45NTM2NUw2LjMzMzE0IDEyLjAxMDRMNC4yNzYzNyAxNC4wNjcyTDUuMDg5OTEgMTQuODc1TDcuOTU0NDkgMTIuMDEwNEw1LjA4OTkxIDkuMTQ1ODNMNC4yODIxIDkuOTUzNjVaIiBmaWxsPSJibGFjayIvPgo8L2c+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNsaXAwXzkwXzI0MjAiPgo8cmVjdCB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIGZpbGw9IndoaXRlIi8+CjwvY2xpcFBhdGg+CjwvZGVmcz4KPC9zdmc+Cg==">
+      <bpmn:documentation>Use this activity to reply to the customer via email to ask questions and clarify requirements.</bpmn:documentation>
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="io.camunda:email:1" retries="3" />
+        <zeebe:ioMapping>
+          <zeebe:input source="simple" target="authentication.type" />
+          <zeebe:input source="{{secrets.INBOUND_MAIL_USER}}" target="authentication.username" />
+          <zeebe:input source="{{secrets.INBOUND_MAIL_PASSWORD}}" target="authentication.password" />
+          <zeebe:input source="smtp" target="protocol" />
+          <zeebe:input source="{{secrets.INBOUND_MAIL_SERVER}}" target="data.smtpConfig.smtpHost" />
+          <zeebe:input source="=587" target="data.smtpConfig.smtpPort" />
+          <zeebe:input source="TLS" target="data.smtpConfig.smtpCryptographicProtocol" />
+          <zeebe:input source="sendEmailSmtp" target="data.smtpActionDiscriminator" />
+          <zeebe:input source="{{secrets.INBOUND_MAIL_ADDRESS}}" target="data.smtpAction.from" />
+          <zeebe:input source="=communicationContext.emailAddress" target="data.smtpAction.to" />
+          <zeebe:input source="=if communicationContext.conversationId != null then &#10;  { &#34;In-Reply-To&#34;: communicationContext.conversationId } &#10;else &#10;  {}" target="data.smtpAction.headers" />
+          <zeebe:input source="=communicationContent.subject" target="data.smtpAction.subject" />
+          <zeebe:input source="PLAIN" target="data.smtpAction.contentType" />
+          <zeebe:input source="=communicationContent.text" target="data.smtpAction.body" />
+        </zeebe:ioMapping>
+        <zeebe:taskHeaders>
+          <zeebe:header key="resultVariable" value="ourReplyEmail" />
+          <zeebe:header key="retryBackoff" value="PT0S" />
+        </zeebe:taskHeaders>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0j31jhn</bpmn:incoming>
+      <bpmn:incoming>Flow_135fga9</bpmn:incoming>
+      <bpmn:outgoing>Flow_09gjg6u</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:intermediateCatchEvent id="Event_WaitForResponse" name="Customer response received" zeebe:modelerTemplate="io.camunda.connectors.inbound.EmailIntermediate.v1" zeebe:modelerTemplateVersion="2" zeebe:modelerTemplateIcon="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzkwXzI0MjApIj4KPHBhdGggZD0iTTguMzM4MzUgOS45NTM2NUwxMC4zODk0IDEyLjAxMDRMOC4zMzI2MiAxNC4wNjcyTDkuMTQ2MTYgMTQuODc1TDEyLjAxMDcgMTIuMDEwNEw5LjE0NjE2IDkuMTQ1ODNMOC4zMzgzNSA5Ljk1MzY1WiIgZmlsbD0iYmxhY2siLz4KPHBhdGggZD0iTTEyLjM0ODggOS45NTM2NUwxNC4zOTk4IDEyLjAxMDRMMTIuMzQzIDE0LjA2NzJMMTMuMTU2NiAxNC44NzVMMTYuMDIxMiAxMi4wMTA0TDEzLjE1NjYgOS4xNDU4M0wxMi4zNDg4IDkuOTUzNjVaIiBmaWxsPSJibGFjayIvPgo8cGF0aCBkPSJNMy45NzIgMTEuNDM3NUgxLjEyNTMzVjIuNzkyMTlMNy42NzM3NiA3LjMyMzk2QzcuNzY5NjcgNy4zOTA0OSA3Ljg4MzYgNy40MjYxNCA4LjAwMDMyIDcuNDI2MTRDOC4xMTcwNSA3LjQyNjE0IDguMjMwOTggNy4zOTA0OSA4LjMyNjg5IDcuMzIzOTZMMTQuODc1MyAyLjc5MjE5VjhIMTYuMDIxMlYyLjI3MDgzQzE2LjAyMTIgMS45NjY5NCAxNS45MDA0IDEuNjc1NDkgMTUuNjg1NiAxLjQ2MDYxQzE1LjQ3MDcgMS4yNDU3MiAxNS4xNzkyIDEuMTI1IDE0Ljg3NTMgMS4xMjVIMS4xMjUzM0MwLjgyMTQzMiAxLjEyNSAwLjUyOTk4NCAxLjI0NTcyIDAuMzE1MDk5IDEuNDYwNjFDMC4xMDAyMTQgMS42NzU0OSAtMC4wMjA1MDc4IDEuOTY2OTQgLTAuMDIwNTA3OCAyLjI3MDgzVjExLjQzNzVDLTAuMDIwNTA3OCAxMS43NDE0IDAuMTAwMjE0IDEyLjAzMjggMC4zMTUwOTkgMTIuMjQ3N0MwLjUyOTk4NCAxMi40NjI2IDAuODIxNDMyIDEyLjU4MzMgMS4xMjUzMyAxMi41ODMzSDMuOTcyVjExLjQzNzVaTTEzLjYxNDkgMi4yNzA4M0w4LjAwMDMyIDYuMTU1MjFMMi4zODU3NCAyLjI3MDgzSDEzLjYxNDlaIiBmaWxsPSIjRkM1RDBEIi8+CjxwYXRoIGQ9Ik00LjI4MjEgOS45NTM2NUw2LjMzMzE0IDEyLjAxMDRMNC4yNzYzNyAxNC4wNjcyTDUuMDg5OTEgMTQuODc1TDcuOTU0NDkgMTIuMDEwNEw1LjA4OTkxIDkuMTQ1ODNMNC4yODIxIDkuOTUzNjVaIiBmaWxsPSJibGFjayIvPgo8L2c+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNsaXAwXzkwXzI0MjAiPgo8cmVjdCB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIGZpbGw9IndoaXRlIi8+CjwvY2xpcFBhdGg+CjwvZGVmcz4KPC9zdmc+Cg==">
+      <bpmn:extensionElements>
+        <zeebe:properties>
+          <zeebe:property name="inbound.type" value="io.camunda:connector-email-inbound:1" />
+          <zeebe:property name="authentication.type" value="simple" />
+          <zeebe:property name="authentication.username" value="{{secrets.INBOUND_MAIL_USER}}" />
+          <zeebe:property name="authentication.password" value="{{secrets.INBOUND_MAIL_PASSWORD}}" />
+          <zeebe:property name="data.imapConfig.imapHost" value="{{secrets.INBOUND_MAIL_SERVER}}" />
+          <zeebe:property name="data.imapConfig.imapPort" value="{{secrets.INBOUND_MAIL_IMAP_PORT}}" />
+          <zeebe:property name="data.imapConfig.imapCryptographicProtocol" value="TLS" />
+          <zeebe:property name="data.folderToListen" value="{{secrets.INBOUND_MAIL_FOLDER}}" />
+          <zeebe:property name="data.pollingWaitTime" value="PT10S" />
+          <zeebe:property name="data.pollingConfigDiscriminator" value="unseenPollingConfig" />
+          <zeebe:property name="data.pollingConfig.handlingStrategy" value="READ" />
+          <zeebe:property name="activationCondition" value="=not(is empty(headers[key = &#34;In-Reply-To&#34;]))" />
+          <zeebe:property name="consumeUnmatchedEvents" value="false" />
+          <zeebe:property name="correlationKeyExpression" value="=headers[key = &#34;In-Reply-To&#34;][1].value" />
+          <zeebe:property name="deduplicationModeManualFlag" value="true" />
+          <zeebe:property name="deduplicationId" value="customer-communication-reply-to-emails" />
+          <zeebe:property name="deduplicationMode" value="MANUAL" />
+          <zeebe:property name="resultVariable" value="responseEmail" />
+          <zeebe:property name="resultExpression" value="" />
+        </zeebe:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_09gjg6u</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ysplnr</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_08tkzj2" messageRef="Message_13dbg1w" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="Flow_09gjg6u" sourceRef="Reply_with_email_to_customer" targetRef="Event_WaitForResponse" />
+    <bpmn:sequenceFlow id="Flow_0j31jhn" name="Email" sourceRef="Gateway_1y5hfxn" targetRef="Reply_with_email_to_customer">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=communicationContext.channel = "email"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:endEvent id="Event_18d7ipg" name="Information retrieved via email">
+      <bpmn:extensionElements>
+        <zeebe:ioMapping>
+          <zeebe:output source="={&#10;  status: &#34;success&#34;,&#10;  email: responseEmail,&#10;  text: responseEmail.plainTextBody&#10;}" target="communicationResult" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1ysplnr</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1ysplnr" sourceRef="Event_WaitForResponse" targetRef="Event_18d7ipg" />
+    <bpmn:sequenceFlow id="Flow_1996dj8" name="Chatbot" sourceRef="Gateway_1y5hfxn" targetRef="Activity_1e8hun9">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=communicationContext.channel = "chat"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1l70yuw" sourceRef="Activity_1e8hun9" targetRef="Event_1ia32kg" />
+    <bpmn:sequenceFlow id="Flow_1s3wsgo" sourceRef="Event_1rpgkfs" targetRef="Gateway_07tayzc" />
+    <bpmn:serviceTask id="Activity_1e8hun9" name="Ask customer via chat" zeebe:modelerTemplate="CamundaChatReply" zeebe:modelerTemplateVersion="4" zeebe:modelerTemplateIcon="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzIwMDFfNTApIj4KPHBhdGggZD0iTTE3Ljk4ODYgMzEuODU3MUwxNiAzMC43MTQzTDIwLjU3MTQgMjIuNzE0M0gyNy40Mjg2QzI4LjAzNDggMjIuNzE0MyAyOC42MTYyIDIyLjQ3MzUgMjkuMDQ0OCAyMi4wNDQ4QzI5LjQ3MzUgMjEuNjE2MiAyOS43MTQzIDIxLjAzNDggMjkuNzE0MyAyMC40Mjg2VjYuNzE0MjhDMjkuNzE0MyA2LjEwODA3IDI5LjQ3MzUgNS41MjY2OSAyOS4wNDQ4IDUuMDk4MDRDMjguNjE2MiA0LjY2OTM4IDI4LjAzNDggNC40Mjg1NyAyNy40Mjg2IDQuNDI4NTdINC41NzE0M0MzLjk2NTIyIDQuNDI4NTcgMy4zODM4NCA0LjY2OTM4IDIuOTU1MTggNS4wOTgwNEMyLjUyNjUzIDUuNTI2NjkgMi4yODU3MSA2LjEwODA3IDIuMjg1NzEgNi43MTQyOFYyMC40Mjg2QzIuMjg1NzEgMjEuMDM0OCAyLjUyNjUzIDIxLjYxNjIgMi45NTUxOCAyMi4wNDQ4QzMuMzgzODQgMjIuNDczNSAzLjk2NTIyIDIyLjcxNDMgNC41NzE0MyAyMi43MTQzSDE0Ljg1NzFWMjVINC41NzE0M0MzLjM1OTAxIDI1IDIuMTk2MjUgMjQuNTE4NCAxLjMzODk0IDIzLjY2MTFDMC40ODE2MzEgMjIuODAzNyAwIDIxLjY0MSAwIDIwLjQyODZWNi43MTQyOEMwIDUuNTAxODYgMC40ODE2MzEgNC4zMzkxIDEuMzM4OTQgMy40ODE3OUMyLjE5NjI1IDIuNjI0NDggMy4zNTkwMSAyLjE0Mjg1IDQuNTcxNDMgMi4xNDI4NUgyNy40Mjg2QzI4LjY0MSAyLjE0Mjg1IDI5LjgwMzggMi42MjQ0OCAzMC42NjExIDMuNDgxNzlDMzEuNTE4NCA0LjMzOTEgMzIgNS41MDE4NiAzMiA2LjcxNDI4VjIwLjQyODZDMzIgMjEuNjQxIDMxLjUxODQgMjIuODAzNyAzMC42NjExIDIzLjY2MTFDMjkuODAzOCAyNC41MTg0IDI4LjY0MSAyNSAyNy40Mjg2IDI1SDIxLjg5NzFMMTcuOTg4NiAzMS44NTcxWiIgZmlsbD0iIzBGNjJGRSIvPgo8cGF0aCBkPSJNMjUuMTQyOSA5SDYuODU3MThWMTEuMjg1N0gyNS4xNDI5VjlaIiBmaWxsPSIjMEY2MkZFIi8+CjxwYXRoIGQ9Ik0xOC4yODU3IDE1Ljg1NzFINi44NTcxOFYxOC4xNDI5SDE4LjI4NTdWMTUuODU3MVoiIGZpbGw9IiMwRjYyRkUiLz4KPC9nPgo8ZGVmcz4KPGNsaXBQYXRoIGlkPSJjbGlwMF8yMDAxXzUwIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSJ3aGl0ZSIvPgo8L2NsaXBQYXRoPgo8L2RlZnM+Cjwvc3ZnPgo=">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="camundaChatReply" retries="3" />
+        <zeebe:ioMapping>
+          <zeebe:input source="=true" target="waitResponse" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1996dj8</bpmn:incoming>
+      <bpmn:outgoing>Flow_1l70yuw</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:boundaryEvent id="Event_0jyyu07" name="Chat closed" attachedToRef="Activity_1e8hun9">
+      <bpmn:outgoing>Flow_0ubp3c7</bpmn:outgoing>
+      <bpmn:errorEventDefinition id="ErrorEventDefinition_0jdbyzn" errorRef="Error_07xvk80" />
+    </bpmn:boundaryEvent>
+    <bpmn:sequenceFlow id="Flow_0ubp3c7" sourceRef="Event_0jyyu07" targetRef="Gateway_07tayzc" />
+    <bpmn:exclusiveGateway id="Gateway_07tayzc">
+      <bpmn:incoming>Flow_0ubp3c7</bpmn:incoming>
+      <bpmn:incoming>Flow_1s3wsgo</bpmn:incoming>
+      <bpmn:outgoing>Flow_135fga9</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_135fga9" name="fallback to email" sourceRef="Gateway_07tayzc" targetRef="Reply_with_email_to_customer" />
+    <bpmn:sequenceFlow id="Flow_0hkpmky" name="Phone" sourceRef="Gateway_1y5hfxn" targetRef="Activity_0ndgmi5" />
+    <bpmn:userTask id="Activity_0ndgmi5" name="Ask customer via phone">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:ioMapping>
+          <zeebe:input source="=&#34;Please provide your response&#34;" target="clerkResponse" />
+          <zeebe:output source="=clerkResponse" target="clerkResponse" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0hkpmky</bpmn:incoming>
+      <bpmn:outgoing>Flow_0ibbtmp</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Event_0arwsmo" name="Information retrieved via phone">
+      <bpmn:extensionElements>
+        <zeebe:ioMapping>
+          <zeebe:output source="={&#10;  &#34;status&#34;: &#34;success&#34;,  &#10;  &#34;text&#34;: clerkResponse&#10;}" target="communicationResult" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0ibbtmp</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0ibbtmp" sourceRef="Activity_0ndgmi5" targetRef="Event_0arwsmo" />
+    <bpmn:endEvent id="Event_1ia32kg" name="Information retrieved via chat">
+      <bpmn:extensionElements>
+        <zeebe:ioMapping>
+          <zeebe:output source="={&#10;  status: &#34;success&#34;,&#10;  chat: userInput,&#10;  text: userInput&#10;}" target="communicationResult" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1l70yuw</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:subProcess id="Activity_1g8y74n" triggeredByEvent="true">
+      <bpmn:startEvent id="Event_1x8wk5r" name="Timeout">
+        <bpmn:extensionElements />
+        <bpmn:outgoing>Flow_0jr6kf4</bpmn:outgoing>
+        <bpmn:timerEventDefinition id="TimerEventDefinition_0qbporm">
+          <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">P1D</bpmn:timeDuration>
+        </bpmn:timerEventDefinition>
+      </bpmn:startEvent>
+      <bpmn:endEvent id="Event_1n38pub" name="Information could not be retrieved">
+        <bpmn:extensionElements>
+          <zeebe:ioMapping>
+            <zeebe:output source="={&#10;  status: &#34;timeout&#34;&#10;}" target="communicationResult" />
+          </zeebe:ioMapping>
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0jr6kf4</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:sequenceFlow id="Flow_0jr6kf4" sourceRef="Event_1x8wk5r" targetRef="Event_1n38pub" />
+    </bpmn:subProcess>
+    <bpmn:boundaryEvent id="Event_1rpgkfs" name="Chat timeout" attachedToRef="Activity_1e8hun9">
+      <bpmn:outgoing>Flow_1s3wsgo</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_0ybl5ev">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT15M</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:boundaryEvent>
+  </bpmn:process>
+  <bpmn:message id="Message_13dbg1w" name="adcdb303-e725-4bd5-b3b6-32fcb273ad87" zeebe:modelerTemplate="io.camunda.connectors.inbound.EmailIntermediate.v1">
+    <bpmn:extensionElements>
+      <zeebe:subscription correlationKey="=ourReplyEmail.messageId" />
+    </bpmn:extensionElements>
+  </bpmn:message>
+  <bpmn:message id="Message_07i0alk" name="chat">
+    <bpmn:extensionElements>
+      <zeebe:subscription correlationKey="=x" />
+    </bpmn:extensionElements>
+  </bpmn:message>
+  <bpmn:error id="Error_07xvk80" name="ERROR_CHAT" errorCode="ERROR_CHAT" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="customer-communication-question">
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="152" y="122" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="128" y="165" width="85" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1y5hfxn_di" bpmnElement="Gateway_1y5hfxn" isMarkerVisible="true">
+        <dc:Bounds x="275" y="115" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="262" y="78" width="77" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0pn4ems_di" bpmnElement="Reply_with_email_to_customer">
+        <dc:Bounds x="510" y="370" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1r7dbg4_di" bpmnElement="Event_WaitForResponse">
+        <dc:Bounds x="712" y="392" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="701" y="436" width="49" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_18d7ipg_di" bpmnElement="Event_18d7ipg">
+        <dc:Bounds x="872" y="392" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="845" y="435" width="90" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ixo4ry_di" bpmnElement="Activity_1e8hun9">
+        <dc:Bounds x="510" y="100" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_07tayzc_di" bpmnElement="Gateway_07tayzc" isMarkerVisible="true">
+        <dc:Bounds x="555" y="243" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1shl0zc_di" bpmnElement="Activity_0ndgmi5">
+        <dc:Bounds x="510" y="510" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0arwsmo_di" bpmnElement="Event_0arwsmo">
+        <dc:Bounds x="872" y="532" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="860" y="575" width="61" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1ia32kg_di" bpmnElement="Event_1ia32kg">
+        <dc:Bounds x="872" y="122" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="848" y="165" width="85" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0x3jjpo_di" bpmnElement="Activity_1g8y74n" isExpanded="true">
+        <dc:Bounds x="660" y="650" width="190" height="120" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0fy54q7_di" bpmnElement="Event_1x8wk5r">
+        <dc:Bounds x="680" y="672" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="678" y="715" width="40" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1n38pub_di" bpmnElement="Event_1n38pub">
+        <dc:Bounds x="772" y="672" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="748" y="715" width="85" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0jr6kf4_di" bpmnElement="Flow_0jr6kf4">
+        <di:waypoint x="716" y="690" />
+        <di:waypoint x="772" y="690" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_0qdqle1_di" bpmnElement="Event_1rpgkfs">
+        <dc:Bounds x="512" y="162" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="448" y="193" width="63" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0cugllz_di" bpmnElement="Event_0jyyu07">
+        <dc:Bounds x="562" y="162" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="590" y="193" width="59" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1q78z4g_di" bpmnElement="Flow_1q78z4g">
+        <di:waypoint x="188" y="140" />
+        <di:waypoint x="275" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_09gjg6u_di" bpmnElement="Flow_09gjg6u">
+        <di:waypoint x="610" y="410" />
+        <di:waypoint x="712" y="410" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0j31jhn_di" bpmnElement="Flow_0j31jhn">
+        <di:waypoint x="300" y="165" />
+        <di:waypoint x="300" y="410" />
+        <di:waypoint x="510" y="410" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="316" y="392" width="29" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ysplnr_di" bpmnElement="Flow_1ysplnr">
+        <di:waypoint x="748" y="410" />
+        <di:waypoint x="872" y="410" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1996dj8_di" bpmnElement="Flow_1996dj8">
+        <di:waypoint x="325" y="140" />
+        <di:waypoint x="510" y="140" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="407" y="117" width="40" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1l70yuw_di" bpmnElement="Flow_1l70yuw">
+        <di:waypoint x="610" y="140" />
+        <di:waypoint x="872" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1s3wsgo_di" bpmnElement="Flow_1s3wsgo">
+        <di:waypoint x="530" y="198" />
+        <di:waypoint x="530" y="268" />
+        <di:waypoint x="555" y="268" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="658" y="400" width="79" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ubp3c7_di" bpmnElement="Flow_0ubp3c7">
+        <di:waypoint x="580" y="198" />
+        <di:waypoint x="580" y="243" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_135fga9_di" bpmnElement="Flow_135fga9">
+        <di:waypoint x="580" y="293" />
+        <di:waypoint x="580" y="370" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="590" y="323" width="79" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0hkpmky_di" bpmnElement="Flow_0hkpmky">
+        <di:waypoint x="300" y="165" />
+        <di:waypoint x="300" y="550" />
+        <di:waypoint x="510" y="550" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="314" y="523" width="32" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ibbtmp_di" bpmnElement="Flow_0ibbtmp">
+        <di:waypoint x="610" y="550" />
+        <di:waypoint x="872" y="550" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

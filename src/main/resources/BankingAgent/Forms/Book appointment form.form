@@ -1,0 +1,62 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.7.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "0a9b4c5"
+  },
+  "schemaVersion": 18,
+  "id": "Form_074uh2s",
+  "components": [
+    {
+      "text": "##### Message Received",
+      "type": "text",
+      "id": "Subheading_0",
+      "layout": {
+        "row": "row_0",
+        "columns": null
+      }
+    },
+    {
+      "label": "Message",
+      "type": "textarea",
+      "id": "Textarea_1",
+      "validate": {
+        "required": true
+      },
+      "key": "book_apt_message",
+      "layout": {
+        "row": "row_1",
+        "columns": null
+      }
+    },
+    {
+      "text": "##### Response Provided",
+      "type": "text",
+      "id": "Subheading_2",
+      "layout": {
+        "row": "Row_0atlf57",
+        "columns": null
+      }
+    },
+    {
+      "subtype": "datetime",
+      "type": "datetime",
+      "id": "Date_3",
+      "dateLabel": "Appointment Date",
+      "validate": {
+        "required": true
+      },
+      "key": "appointmentDateTime",
+      "layout": {
+        "row": "row_2",
+        "columns": null
+      },
+      "timeLabel": "Time",
+      "timeSerializingFormat": "utc_offset",
+      "timeInterval": 15
+    }
+  ],
+  "generated": true,
+  "type": "default"
+}
